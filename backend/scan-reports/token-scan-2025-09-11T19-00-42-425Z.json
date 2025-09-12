@@ -1,0 +1,3878 @@
+{
+  "scanDate": "2025-09-11T19:00:42.425Z",
+  "totalRepositories": 2,
+  "totalTokensFound": 256,
+  "totalUniqueTokens": 157,
+  "repositories": [
+    {
+      "repository": {
+        "url": "/Users/samarmustafa/Documents/Samar/ssd-dev/canon-design-system-repo",
+        "name": "canon-design-system",
+        "team": "Design System",
+        "type": "website",
+        "branch": "main"
+      },
+      "scanDate": "2025-09-11T19:00:42.386Z",
+      "tokensFound": [
+        {
+          "tokenName": "size-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 7,
+              "column": 1,
+              "context": "$cds-size-0: 0;",
+              "matchedText": "$cds-size-0",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 41,
+              "column": 11,
+              "context": "$cds-h-0: $cds-size-0;",
+              "matchedText": "$cds-size-0",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 52,
+              "column": 11,
+              "context": "$cds-w-0: $cds-size-0;",
+              "matchedText": "$cds-size-0",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 63,
+              "column": 13,
+              "context": "$cds-top-0: $cds-size-0;",
+              "matchedText": "$cds-size-0",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 74,
+              "column": 16,
+              "context": "$cds-bottom-0: $cds-size-0;",
+              "matchedText": "$cds-size-0",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 85,
+              "column": 14,
+              "context": "$cds-left-0: $cds-size-0;",
+              "matchedText": "$cds-size-0",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 96,
+              "column": 15,
+              "context": "$cds-right-0: $cds-size-0;",
+              "matchedText": "$cds-size-0",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 113,
+              "column": 15,
+              "context": "$cds-max-w-0: $cds-size-0;",
+              "matchedText": "$cds-size-0",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 120,
+              "column": 15,
+              "context": "$cds-min-w-0: $cds-size-0;",
+              "matchedText": "$cds-size-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 9,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-8",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 15,
+              "column": 1,
+              "context": "$cds-size-8: 0.5rem;",
+              "matchedText": "$cds-size-8",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 42,
+              "column": 11,
+              "context": "$cds-h-8: $cds-size-8;",
+              "matchedText": "$cds-size-8",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 53,
+              "column": 11,
+              "context": "$cds-w-8: $cds-size-8;",
+              "matchedText": "$cds-size-8",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 64,
+              "column": 13,
+              "context": "$cds-top-8: $cds-size-8;",
+              "matchedText": "$cds-size-8",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 75,
+              "column": 16,
+              "context": "$cds-bottom-8: $cds-size-8;",
+              "matchedText": "$cds-size-8",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 86,
+              "column": 14,
+              "context": "$cds-left-8: $cds-size-8;",
+              "matchedText": "$cds-size-8",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 97,
+              "column": 15,
+              "context": "$cds-right-8: $cds-size-8;",
+              "matchedText": "$cds-size-8",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 114,
+              "column": 15,
+              "context": "$cds-max-w-8: $cds-size-8;",
+              "matchedText": "$cds-size-8",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 121,
+              "column": 15,
+              "context": "$cds-min-w-8: $cds-size-8;",
+              "matchedText": "$cds-size-8",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 9,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 17,
+              "column": 1,
+              "context": "$cds-size-24: 1.5rem;",
+              "matchedText": "$cds-size-24",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 44,
+              "column": 12,
+              "context": "$cds-h-24: $cds-size-24;",
+              "matchedText": "$cds-size-24",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 55,
+              "column": 12,
+              "context": "$cds-w-24: $cds-size-24;",
+              "matchedText": "$cds-size-24",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 66,
+              "column": 14,
+              "context": "$cds-top-24: $cds-size-24;",
+              "matchedText": "$cds-size-24",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 77,
+              "column": 17,
+              "context": "$cds-bottom-24: $cds-size-24;",
+              "matchedText": "$cds-size-24",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 88,
+              "column": 15,
+              "context": "$cds-left-24: $cds-size-24;",
+              "matchedText": "$cds-size-24",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 99,
+              "column": 16,
+              "context": "$cds-right-24: $cds-size-24;",
+              "matchedText": "$cds-size-24",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 116,
+              "column": 16,
+              "context": "$cds-max-w-24: $cds-size-24;/* New token change on Sun Sep  7 18:",
+              "matchedText": "$cds-size-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 8,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-40",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 19,
+              "column": 1,
+              "context": "$cds-size-40: 2.5rem;",
+              "matchedText": "$cds-size-40",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 46,
+              "column": 12,
+              "context": "$cds-h-40: $cds-size-40;",
+              "matchedText": "$cds-size-40",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 57,
+              "column": 12,
+              "context": "$cds-w-40: $cds-size-40;",
+              "matchedText": "$cds-size-40",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 68,
+              "column": 14,
+              "context": "$cds-top-40: $cds-size-40;",
+              "matchedText": "$cds-size-40",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 79,
+              "column": 17,
+              "context": "$cds-bottom-40: $cds-size-40;",
+              "matchedText": "$cds-size-40",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 90,
+              "column": 15,
+              "context": "$cds-left-40: $cds-size-40;",
+              "matchedText": "$cds-size-40",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 101,
+              "column": 16,
+              "context": "$cds-right-40: $cds-size-40;",
+              "matchedText": "$cds-size-40",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 7,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-56",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 21,
+              "column": 1,
+              "context": "$cds-size-56: 3.5rem;",
+              "matchedText": "$cds-size-56",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 48,
+              "column": 12,
+              "context": "$cds-h-56: $cds-size-56;",
+              "matchedText": "$cds-size-56",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 59,
+              "column": 12,
+              "context": "$cds-w-56: $cds-size-56;",
+              "matchedText": "$cds-size-56",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 70,
+              "column": 14,
+              "context": "$cds-top-56: $cds-size-56;",
+              "matchedText": "$cds-size-56",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 81,
+              "column": 17,
+              "context": "$cds-bottom-56: $cds-size-56;",
+              "matchedText": "$cds-size-56",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 92,
+              "column": 15,
+              "context": "$cds-left-56: $cds-size-56;",
+              "matchedText": "$cds-size-56",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 103,
+              "column": 16,
+              "context": "$cds-right-56: $cds-size-56;",
+              "matchedText": "$cds-size-56",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 7,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 43,
+              "column": 12,
+              "context": "$cds-h-16: $cds-size-16;",
+              "matchedText": "$cds-size-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 54,
+              "column": 12,
+              "context": "$cds-w-16: $cds-size-16;",
+              "matchedText": "$cds-size-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 65,
+              "column": 14,
+              "context": "$cds-top-16: $cds-size-16;",
+              "matchedText": "$cds-size-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 76,
+              "column": 17,
+              "context": "$cds-bottom-16: $cds-size-16;",
+              "matchedText": "$cds-size-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 87,
+              "column": 15,
+              "context": "$cds-left-16: $cds-size-16;",
+              "matchedText": "$cds-size-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 98,
+              "column": 16,
+              "context": "$cds-right-16: $cds-size-16;",
+              "matchedText": "$cds-size-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 115,
+              "column": 16,
+              "context": "$cds-max-w-16: $cds-size-16;",
+              "matchedText": "$cds-size-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 7,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-32",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 45,
+              "column": 12,
+              "context": "$cds-h-32: $cds-size-32;",
+              "matchedText": "$cds-size-32",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 56,
+              "column": 12,
+              "context": "$cds-w-32: $cds-size-32;",
+              "matchedText": "$cds-size-32",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 67,
+              "column": 14,
+              "context": "$cds-top-32: $cds-size-32;",
+              "matchedText": "$cds-size-32",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 78,
+              "column": 17,
+              "context": "$cds-bottom-32: $cds-size-32;",
+              "matchedText": "$cds-size-32",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 89,
+              "column": 15,
+              "context": "$cds-left-32: $cds-size-32;",
+              "matchedText": "$cds-size-32",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 100,
+              "column": 16,
+              "context": "$cds-right-32: $cds-size-32;",
+              "matchedText": "$cds-size-32",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 6,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 47,
+              "column": 12,
+              "context": "$cds-h-48: $cds-size-48;",
+              "matchedText": "$cds-size-48",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 58,
+              "column": 12,
+              "context": "$cds-w-48: $cds-size-48;",
+              "matchedText": "$cds-size-48",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 69,
+              "column": 14,
+              "context": "$cds-top-48: $cds-size-48;",
+              "matchedText": "$cds-size-48",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 80,
+              "column": 17,
+              "context": "$cds-bottom-48: $cds-size-48;",
+              "matchedText": "$cds-size-48",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 91,
+              "column": 15,
+              "context": "$cds-left-48: $cds-size-48;",
+              "matchedText": "$cds-size-48",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 102,
+              "column": 16,
+              "context": "$cds-right-48: $cds-size-48;",
+              "matchedText": "$cds-size-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 6,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-64",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 49,
+              "column": 12,
+              "context": "$cds-h-64: $cds-size-64;",
+              "matchedText": "$cds-size-64",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 60,
+              "column": 12,
+              "context": "$cds-w-64: $cds-size-64;",
+              "matchedText": "$cds-size-64",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 71,
+              "column": 14,
+              "context": "$cds-top-64: $cds-size-64;",
+              "matchedText": "$cds-size-64",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 82,
+              "column": 17,
+              "context": "$cds-bottom-64: $cds-size-64;",
+              "matchedText": "$cds-size-64",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 104,
+              "column": 16,
+              "context": "$cds-right-64: $cds-size-64;",
+              "matchedText": "$cds-size-64",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 5,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-72",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 23,
+              "column": 1,
+              "context": "$cds-size-72: 4.5rem;",
+              "matchedText": "$cds-size-72",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 105,
+              "column": 16,
+              "context": "$cds-right-72: $cds-size-72;",
+              "matchedText": "$cds-size-72",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 117,
+              "column": 12,
+              "context": "$cds-w-72: $cds-size-72;",
+              "matchedText": "$cds-size-72",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 3,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-144",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 33,
+              "column": 1,
+              "context": "$cds-size-144: 9rem; // Updated size on 2024-10-15",
+              "matchedText": "$cds-size-144",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 106,
+              "column": 17,
+              "context": "$cds-right-144: $cds-size-144;",
+              "matchedText": "$cds-size-144",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-1",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 8,
+              "column": 1,
+              "context": "$cds-size-1: 1px;",
+              "matchedText": "$cds-size-1",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-2",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 9,
+              "column": 1,
+              "context": "$cds-size-2: 2px;",
+              "matchedText": "$cds-size-2",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-3",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 10,
+              "column": 1,
+              "context": "$cds-size-3: 3px;",
+              "matchedText": "$cds-size-3",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-4",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 11,
+              "column": 1,
+              "context": "$cds-size-4: 4px;",
+              "matchedText": "$cds-size-4",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-5",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 12,
+              "column": 1,
+              "context": "$cds-size-5: 5px;",
+              "matchedText": "$cds-size-5",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-6",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 13,
+              "column": 1,
+              "context": "$cds-size-6: 6px;",
+              "matchedText": "$cds-size-6",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-7",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 14,
+              "column": 1,
+              "context": "$cds-size-7: 7px;",
+              "matchedText": "$cds-size-7",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 16,
+              "column": 1,
+              "context": "$cds-size-16: 1rem;",
+              "matchedText": "$cds-size-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-32",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 18,
+              "column": 1,
+              "context": "$cds-size-32: 2.1rem;",
+              "matchedText": "$cds-size-32",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 20,
+              "column": 1,
+              "context": "$cds-size-48: 3rem;",
+              "matchedText": "$cds-size-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-64",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 22,
+              "column": 1,
+              "context": "$cds-size-64: 4rem;",
+              "matchedText": "$cds-size-64",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-80",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 24,
+              "column": 1,
+              "context": "$cds-size-80: 5rem;",
+              "matchedText": "$cds-size-80",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-88",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 25,
+              "column": 1,
+              "context": "$cds-size-88: 5.5rem;",
+              "matchedText": "$cds-size-88",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-96",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 26,
+              "column": 1,
+              "context": "$cds-size-96: 6rem;",
+              "matchedText": "$cds-size-96",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-100",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 27,
+              "column": 1,
+              "context": "$cds-size-100: 100%;",
+              "matchedText": "$cds-size-100",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-104",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 28,
+              "column": 1,
+              "context": "$cds-size-104: 6.5rem;",
+              "matchedText": "$cds-size-104",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-112",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 29,
+              "column": 1,
+              "context": "$cds-size-112: 7rem;",
+              "matchedText": "$cds-size-112",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-128",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 30,
+              "column": 1,
+              "context": "$cds-size-128: 7.5rem;",
+              "matchedText": "$cds-size-128",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-136",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 31,
+              "column": 1,
+              "context": "$cds-size-136: 8rem;",
+              "matchedText": "$cds-size-136",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-144",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 32,
+              "column": 3,
+              "context": "//$cds-size-144: 8.5rem;",
+              "matchedText": "$cds-size-144",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-152",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 34,
+              "column": 1,
+              "context": "$cds-size-152: 9.5rem;",
+              "matchedText": "$cds-size-152",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-160",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 35,
+              "column": 1,
+              "context": "$cds-size-160: 10rem;",
+              "matchedText": "$cds-size-160",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-size-168",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 36,
+              "column": 1,
+              "context": "$cds-size-168: 10.5rem;",
+              "matchedText": "$cds-size-168",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "size-176",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 37,
+              "column": 1,
+              "context": "$cds-size-176: 11rem;",
+              "matchedText": "$cds-size-176",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-h-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 41,
+              "column": 1,
+              "context": "$cds-h-0: $cds-size-0;",
+              "matchedText": "$cds-h-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-h-8",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 42,
+              "column": 1,
+              "context": "$cds-h-8: $cds-size-8;",
+              "matchedText": "$cds-h-8",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-h-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 43,
+              "column": 1,
+              "context": "$cds-h-16: $cds-size-16;",
+              "matchedText": "$cds-h-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-h-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 44,
+              "column": 1,
+              "context": "$cds-h-24: $cds-size-24;",
+              "matchedText": "$cds-h-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-h-32",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 45,
+              "column": 1,
+              "context": "$cds-h-32: $cds-size-32;",
+              "matchedText": "$cds-h-32",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-h-40",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 46,
+              "column": 1,
+              "context": "$cds-h-40: $cds-size-40;",
+              "matchedText": "$cds-h-40",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-h-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 47,
+              "column": 1,
+              "context": "$cds-h-48: $cds-size-48;",
+              "matchedText": "$cds-h-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-h-56",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 48,
+              "column": 1,
+              "context": "$cds-h-56: $cds-size-56;",
+              "matchedText": "$cds-h-56",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-h-64",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 49,
+              "column": 1,
+              "context": "$cds-h-64: $cds-size-64;",
+              "matchedText": "$cds-h-64",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 52,
+              "column": 1,
+              "context": "$cds-w-0: $cds-size-0;",
+              "matchedText": "$cds-w-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-8",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 53,
+              "column": 1,
+              "context": "$cds-w-8: $cds-size-8;",
+              "matchedText": "$cds-w-8",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 54,
+              "column": 1,
+              "context": "$cds-w-16: $cds-size-16;",
+              "matchedText": "$cds-w-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 55,
+              "column": 1,
+              "context": "$cds-w-24: $cds-size-24;",
+              "matchedText": "$cds-w-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-32",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 56,
+              "column": 1,
+              "context": "$cds-w-32: $cds-size-32;",
+              "matchedText": "$cds-w-32",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-40",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 57,
+              "column": 1,
+              "context": "$cds-w-40: $cds-size-40;",
+              "matchedText": "$cds-w-40",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 58,
+              "column": 1,
+              "context": "$cds-w-48: $cds-size-48;",
+              "matchedText": "$cds-w-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-56",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 59,
+              "column": 1,
+              "context": "$cds-w-56: $cds-size-56;",
+              "matchedText": "$cds-w-56",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-64",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 60,
+              "column": 1,
+              "context": "$cds-w-64: $cds-size-64;",
+              "matchedText": "$cds-w-64",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-top-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 63,
+              "column": 1,
+              "context": "$cds-top-0: $cds-size-0;",
+              "matchedText": "$cds-top-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-top-8",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 64,
+              "column": 1,
+              "context": "$cds-top-8: $cds-size-8;",
+              "matchedText": "$cds-top-8",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-top-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 65,
+              "column": 1,
+              "context": "$cds-top-16: $cds-size-16;",
+              "matchedText": "$cds-top-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-top-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 66,
+              "column": 1,
+              "context": "$cds-top-24: $cds-size-24;",
+              "matchedText": "$cds-top-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-top-32",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 67,
+              "column": 1,
+              "context": "$cds-top-32: $cds-size-32;",
+              "matchedText": "$cds-top-32",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-top-40",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 68,
+              "column": 1,
+              "context": "$cds-top-40: $cds-size-40;",
+              "matchedText": "$cds-top-40",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-top-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 69,
+              "column": 1,
+              "context": "$cds-top-48: $cds-size-48;",
+              "matchedText": "$cds-top-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-top-56",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 70,
+              "column": 1,
+              "context": "$cds-top-56: $cds-size-56;",
+              "matchedText": "$cds-top-56",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-top-64",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 71,
+              "column": 1,
+              "context": "$cds-top-64: $cds-size-64;",
+              "matchedText": "$cds-top-64",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-bottom-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 74,
+              "column": 1,
+              "context": "$cds-bottom-0: $cds-size-0;",
+              "matchedText": "$cds-bottom-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-bottom-8",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 75,
+              "column": 1,
+              "context": "$cds-bottom-8: $cds-size-8;",
+              "matchedText": "$cds-bottom-8",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-bottom-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 76,
+              "column": 1,
+              "context": "$cds-bottom-16: $cds-size-16;",
+              "matchedText": "$cds-bottom-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-bottom-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 77,
+              "column": 1,
+              "context": "$cds-bottom-24: $cds-size-24;",
+              "matchedText": "$cds-bottom-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-bottom-32",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 78,
+              "column": 1,
+              "context": "$cds-bottom-32: $cds-size-32;",
+              "matchedText": "$cds-bottom-32",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-bottom-40",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 79,
+              "column": 1,
+              "context": "$cds-bottom-40: $cds-size-40;",
+              "matchedText": "$cds-bottom-40",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-bottom-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 80,
+              "column": 1,
+              "context": "$cds-bottom-48: $cds-size-48;",
+              "matchedText": "$cds-bottom-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-bottom-56",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 81,
+              "column": 1,
+              "context": "$cds-bottom-56: $cds-size-56;",
+              "matchedText": "$cds-bottom-56",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-bottom-64",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 82,
+              "column": 1,
+              "context": "$cds-bottom-64: $cds-size-64;",
+              "matchedText": "$cds-bottom-64",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-left-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 85,
+              "column": 1,
+              "context": "$cds-left-0: $cds-size-0;",
+              "matchedText": "$cds-left-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-left-8",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 86,
+              "column": 1,
+              "context": "$cds-left-8: $cds-size-8;",
+              "matchedText": "$cds-left-8",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-left-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 87,
+              "column": 1,
+              "context": "$cds-left-16: $cds-size-16;",
+              "matchedText": "$cds-left-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-left-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 88,
+              "column": 1,
+              "context": "$cds-left-24: $cds-size-24;",
+              "matchedText": "$cds-left-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-left-32",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 89,
+              "column": 1,
+              "context": "$cds-left-32: $cds-size-32;",
+              "matchedText": "$cds-left-32",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-left-40",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 90,
+              "column": 1,
+              "context": "$cds-left-40: $cds-size-40;",
+              "matchedText": "$cds-left-40",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-left-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 91,
+              "column": 1,
+              "context": "$cds-left-48: $cds-size-48;",
+              "matchedText": "$cds-left-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-left-56",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 92,
+              "column": 1,
+              "context": "$cds-left-56: $cds-size-56;",
+              "matchedText": "$cds-left-56",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 96,
+              "column": 1,
+              "context": "$cds-right-0: $cds-size-0;",
+              "matchedText": "$cds-right-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-8",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 97,
+              "column": 1,
+              "context": "$cds-right-8: $cds-size-8;",
+              "matchedText": "$cds-right-8",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 98,
+              "column": 1,
+              "context": "$cds-right-16: $cds-size-16;",
+              "matchedText": "$cds-right-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 99,
+              "column": 1,
+              "context": "$cds-right-24: $cds-size-24;",
+              "matchedText": "$cds-right-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-32",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 100,
+              "column": 1,
+              "context": "$cds-right-32: $cds-size-32;",
+              "matchedText": "$cds-right-32",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-40",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 101,
+              "column": 1,
+              "context": "$cds-right-40: $cds-size-40;",
+              "matchedText": "$cds-right-40",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 102,
+              "column": 1,
+              "context": "$cds-right-48: $cds-size-48;",
+              "matchedText": "$cds-right-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-56",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 103,
+              "column": 1,
+              "context": "$cds-right-56: $cds-size-56;",
+              "matchedText": "$cds-right-56",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-64",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 104,
+              "column": 1,
+              "context": "$cds-right-64: $cds-size-64;",
+              "matchedText": "$cds-right-64",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-72",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 105,
+              "column": 1,
+              "context": "$cds-right-72: $cds-size-72;",
+              "matchedText": "$cds-right-72",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-right-144",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 106,
+              "column": 1,
+              "context": "$cds-right-144: $cds-size-144;",
+              "matchedText": "$cds-right-144",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-max-w-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 113,
+              "column": 1,
+              "context": "$cds-max-w-0: $cds-size-0;",
+              "matchedText": "$cds-max-w-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-max-w-8",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 114,
+              "column": 1,
+              "context": "$cds-max-w-8: $cds-size-8;",
+              "matchedText": "$cds-max-w-8",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-max-w-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 115,
+              "column": 1,
+              "context": "$cds-max-w-16: $cds-size-16;",
+              "matchedText": "$cds-max-w-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-max-w-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 116,
+              "column": 1,
+              "context": "$cds-max-w-24: $cds-size-24;/* New token change on",
+              "matchedText": "$cds-max-w-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-72",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 117,
+              "column": 1,
+              "context": "$cds-w-72: $cds-size-72;",
+              "matchedText": "$cds-w-72",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-min-w-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 120,
+              "column": 1,
+              "context": "$cds-min-w-0: $cds-size-0;",
+              "matchedText": "$cds-min-w-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-min-w-8",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 121,
+              "column": 1,
+              "context": "$cds-min-w-8: $cds-size-8;",
+              "matchedText": "$cds-min-w-8",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-w-80",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 123,
+              "column": 1,
+              "context": "$cds-w-80: $cds-size-80;",
+              "matchedText": "$cds-w-80",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ]
+        },
+        {
+          "tokenName": "size-80",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/foundation/size/_tokens.scss",
+              "line": 123,
+              "column": 12,
+              "context": "$cds-w-80: $cds-size-80;",
+              "matchedText": "$cds-size-80",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/foundation/size/_tokens.scss"
+          ],
+          "category": "typography"
+        }
+      ],
+      "totalUsage": 157,
+      "coverage": 40,
+      "patterns": [],
+      "errors": [],
+      "summary": {
+        "totalFiles": 1,
+        "scannedFiles": 1,
+        "tokensFound": 157,
+        "uniqueTokens": 99,
+        "mostUsedToken": "size-0",
+        "coveragePercentage": 40
+      }
+    },
+    {
+      "repository": {
+        "url": "/Users/samarmustafa/Documents/Samar/ssd-dev/marketing-website-repo",
+        "name": "marketing-website",
+        "team": "Marketing",
+        "type": "website",
+        "branch": "main"
+      },
+      "scanDate": "2025-09-11T19:00:42.424Z",
+      "tokensFound": [
+        {
+          "tokenName": "space-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 16,
+              "column": 39,
+              "context": "    margin: $cds-space-0 $cds-space-0 $cds-space-16 $cds-space-0;",
+              "matchedText": "$cds-space-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 36,
+              "column": 14,
+              "context": "    padding: $cds-space-16 $cds-space-32;",
+              "matchedText": "$cds-space-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 44,
+              "column": 17,
+              "context": "    margin-top: $cds-space-16;",
+              "matchedText": "$cds-space-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 55,
+              "column": 26,
+              "context": "  padding: $cds-space-48 $cds-space-16;",
+              "matchedText": "$cds-space-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 135,
+              "column": 26,
+              "context": "  padding: $cds-space-40 $cds-space-16;",
+              "matchedText": "$cds-space-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 5,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-space-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 46,
+              "column": 17,
+              "context": "    padding: 0% $cds-space-16;",
+              "matchedText": "$cds-space-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 72,
+              "column": 22,
+              "context": "      margin-bottom: $cds-space-16;",
+              "matchedText": "$cds-space-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 95,
+              "column": 26,
+              "context": "  padding: $cds-space-48 $cds-space-16;",
+              "matchedText": "$cds-space-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 103,
+              "column": 30,
+              "context": "      padding: $cds-space-12 $cds-space-16;",
+              "matchedText": "$cds-space-16",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 121,
+              "column": 19,
+              "context": "      margin-top: $cds-space-16;",
+              "matchedText": "$cds-space-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 5,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-space-32",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 14,
+              "column": 14,
+              "context": "    padding: $cds-space-32 $cds-space-40;",
+              "matchedText": "$cds-space-32",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 23,
+              "column": 26,
+              "context": "  padding: $cds-space-64 $cds-space-32;",
+              "matchedText": "$cds-space-32",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 36,
+              "column": 28,
+              "context": "    padding: $cds-space-16 $cds-space-32;",
+              "matchedText": "$cds-space-32",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 139,
+              "column": 10,
+              "context": "    gap: $cds-space-32;",
+              "matchedText": "$cds-space-32",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 4,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-space-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 11,
+              "column": 12,
+              "context": "  padding: $cds-space-24 $cds-space-32;",
+              "matchedText": "$cds-space-24",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 31,
+              "column": 20,
+              "context": "    margin-bottom: $cds-space-24;",
+              "matchedText": "$cds-space-24",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 118,
+              "column": 30,
+              "context": "      padding: $cds-space-12 $cds-space-24;",
+              "matchedText": "$cds-space-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 3,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-space-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 16,
+              "column": 26,
+              "context": "    margin: $cds-space-0 $cds-space-0 $cds-space-16 $cds-space-0;",
+              "matchedText": "$cds-space-0",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 16,
+              "column": 53,
+              "context": "  margin: $cds-space-0 $cds-space-0 $cds-space-16 $cds-space-0;",
+              "matchedText": "$cds-space-0",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 24,
+              "column": 25,
+              "context": "  margin: $cds-space-48 $cds-space-0",
+              "matchedText": "$cds-space-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 3,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-white",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 10,
+              "column": 10,
+              "context": "  color: $cds-white;",
+              "matchedText": "$cds-white",
+              "formatType": "canon-color-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 58,
+              "column": 17,
+              "context": "    background: $cds-white;",
+              "matchedText": "$cds-white",
+              "formatType": "canon-color-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 147,
+              "column": 16,
+              "context": "        color: $cds-white;",
+              "matchedText": "$cds-white",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 3,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-blue-200",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 9,
+              "column": 21,
+              "context": "  background-color: $cds-blue-200;",
+              "matchedText": "$cds-blue-200",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 109,
+              "column": 23,
+              "context": "        border-color: $cds-blue-200;",
+              "matchedText": "$cds-blue-200",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "white",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 10,
+              "column": 10,
+              "context": "  color: $cds-white;",
+              "matchedText": "$cds-white",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 147,
+              "column": 16,
+              "context": "        color: $cds-white;",
+              "matchedText": "$cds-white",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "color"
+        },
+        {
+          "tokenName": "space-32",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 11,
+              "column": 26,
+              "context": "  padding: $cds-space-24 $cds-space-32;",
+              "matchedText": "$cds-space-32",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 54,
+              "column": 8,
+              "context": "  gap: $cds-space-32;",
+              "matchedText": "$cds-space-32",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "blue-100",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 22,
+              "column": 39,
+              "context": "  background: linear-gradient(135deg, $cds-blue-100, $cds-blue-300);",
+              "matchedText": "$cds-blue-100",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 30,
+              "column": 12,
+              "context": "    color: $cds-blue-100;",
+              "matchedText": "$cds-blue-100",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "color"
+        },
+        {
+          "tokenName": "space-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 24,
+              "column": 11,
+              "context": "  margin: $cds-space-48 $cds-space-0",
+              "matchedText": "$cds-space-48",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 95,
+              "column": 12,
+              "context": "  padding: $cds-space-48 $cds-space-16;",
+              "matchedText": "$cds-space-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "gray-200",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 59,
+              "column": 23,
+              "context": "    border: 1px solid $cds-gray-200;",
+              "matchedText": "$cds-gray-200",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 134,
+              "column": 10,
+              "context": "  color: $cds-gray-200;",
+              "matchedText": "$cds-gray-200",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "color"
+        },
+        {
+          "tokenName": "space-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 61,
+              "column": 14,
+              "context": "    padding: $cds-space-24;",
+              "matchedText": "$cds-space-24",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 140,
+              "column": 20,
+              "context": "    margin-bottom: $cds-space-24;",
+              "matchedText": "$cds-space-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-gray-900",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 70,
+              "column": 14,
+              "context": "      color: $cds-gray-900;",
+              "matchedText": "$cds-gray-900",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 133,
+              "column": 21,
+              "context": "  background-color: $cds-gray-900;",
+              "matchedText": "$cds-gray-900",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "space-12",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 103,
+              "column": 16,
+              "context": "      padding: $cds-space-12 $cds-space-16;",
+              "matchedText": "$cds-space-12",
+              "formatType": "canon-cds-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 118,
+              "column": 16,
+              "context": "      padding: $cds-space-12 $cds-space-24;",
+              "matchedText": "$cds-space-12",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$black",
+          "tokenType": "canon-bootstrap-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 62,
+              "column": 32,
+              "context": "    box-shadow: 0 2px 8px rgba($black, 0.1);",
+              "matchedText": "$black",
+              "formatType": "canon-bootstrap-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 65,
+              "column": 35,
+              "context": "      box-shadow: 0 4px 16px rgba($black, 0.15);",
+              "matchedText": "$black",
+              "formatType": "canon-bootstrap-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "200",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 9,
+              "column": 21,
+              "context": "  background-color: $cds-blue-200;",
+              "matchedText": "$cds-blue-200",
+              "formatType": "canon-color-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 111,
+              "column": 36,
+              "context": "        box-shadow: 0 0 0 3px rgba($cds-blue-200, 0.1);",
+              "matchedText": "$cds-blue-200",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "100",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 22,
+              "column": 39,
+              "context": "  background: linear-gradient(135deg, $cds-blue-100, $cds-blue-300);",
+              "matchedText": "$cds-blue-100",
+              "formatType": "canon-color-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 30,
+              "column": 12,
+              "context": "    color: $cds-blue-100;",
+              "matchedText": "$cds-blue-100",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-gray-200",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 59,
+              "column": 23,
+              "context": "    border: 1px solid $cds-gray-200;",
+              "matchedText": "$cds-gray-200",
+              "formatType": "canon-color-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 134,
+              "column": 10,
+              "context": "  color: $cds-gray-200;",
+              "matchedText": "$cds-gray-200",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$black",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 62,
+              "column": 32,
+              "context": "    box-shadow: 0 2px 8px rgba($black, 0.1);",
+              "matchedText": "$black",
+              "formatType": "canon-color-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 65,
+              "column": 35,
+              "context": "      box-shadow: 0 4px 16px rgba($black, 0.15);",
+              "matchedText": "$black",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "900",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 70,
+              "column": 14,
+              "context": "      color: $cds-gray-900;",
+              "matchedText": "$cds-gray-900",
+              "formatType": "canon-color-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 133,
+              "column": 21,
+              "context": "  background-color: $cds-gray-900;",
+              "matchedText": "$cds-gray-900",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "300",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 104,
+              "column": 25,
+              "context": "      border: 1px solid $cds-gray-300;",
+              "matchedText": "$cds-gray-300",
+              "formatType": "canon-color-variables"
+            },
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 143,
+              "column": 14,
+              "context": "      color: $cds-gray-300;",
+              "matchedText": "$cds-gray-300",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 2,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "space-40",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 14,
+              "column": 28,
+              "context": "    padding: $cds-space-32 $cds-space-40;",
+              "matchedText": "$cds-space-40",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-grey-400",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 15,
+              "column": 30,
+              "context": "    border-bottom: 1px solid $cds-grey-400;",
+              "matchedText": "$cds-grey-400",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "space-0",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 16,
+              "column": 13,
+              "context": "    margin: $cds-space-0 $cds-space-0 $cds-space-16 $cds-space",
+              "matchedText": "$cds-space-0",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-blue-300",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 22,
+              "column": 54,
+              "context": "ackground: linear-gradient(135deg, $cds-blue-100, $cds-blue-300);",
+              "matchedText": "$cds-blue-300",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "space-64",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 23,
+              "column": 12,
+              "context": "  padding: $cds-space-64 $cds-space-32;",
+              "matchedText": "$cds-space-64",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "font-size-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 28,
+              "column": 16,
+              "context": "    font-size: $cds-font-size-48;",
+              "matchedText": "$cds-font-size-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-font-weight-bold",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 29,
+              "column": 18,
+              "context": "    font-weight: $cds-font-weight-bold;",
+              "matchedText": "$cds-font-weight-bold",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "radius-medium",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 37,
+              "column": 20,
+              "context": "    border-radius: $cds-radius-medium;",
+              "matchedText": "$cds-radius-medium",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "border"
+        },
+        {
+          "tokenName": "$cds-font-size-18",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 38,
+              "column": 16,
+              "context": "    font-size: $cds-font-size-18;",
+              "matchedText": "$cds-font-size-18",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "font-size-20",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 42,
+              "column": 16,
+              "context": "    font-size: $cds-font-size-20;",
+              "matchedText": "$cds-font-size-20",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-blue-100",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 43,
+              "column": 12,
+              "context": "    color: $cds-blue-100;",
+              "matchedText": "$cds-blue-100",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-space-48",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 55,
+              "column": 12,
+              "context": "  padding: $cds-space-48 $cds-space-16;",
+              "matchedText": "$cds-space-48",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-white",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 58,
+              "column": 17,
+              "context": "    background: $cds-white;",
+              "matchedText": "$cds-white",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-radius-medium",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 60,
+              "column": 20,
+              "context": "    border-radius: $cds-radius-medium;",
+              "matchedText": "$cds-radius-medium",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "border"
+        },
+        {
+          "tokenName": "font-size-24",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 71,
+              "column": 18,
+              "context": "      font-size: $cds-font-size-24;",
+              "matchedText": "$cds-font-size-24",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "gray-600",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 76,
+              "column": 14,
+              "context": "      color: $cds-gray-600;",
+              "matchedText": "$cds-gray-600",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "color"
+        },
+        {
+          "tokenName": "$cds-space-8",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 82,
+              "column": 22,
+              "context": "      margin-bottom: $cds-space-8;",
+              "matchedText": "$cds-space-8",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "font-weight-semibold",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 83,
+              "column": 20,
+              "context": "      font-weight: $cds-font-weight-semibold;",
+              "matchedText": "$cds-font-weight-semibold",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "$cds-gray-800",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 84,
+              "column": 14,
+              "context": "      color: $cds-gray-800;",
+              "matchedText": "$cds-gray-800",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "border-radius-base",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 85,
+              "column": 22,
+              "context": "      border-radius: $cds-border-radius-base;",
+              "matchedText": "$cds-border-radius-base",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "border"
+        },
+        {
+          "tokenName": "$cds-border-color-grey-light",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 86,
+              "column": 25,
+              "context": "      border: 1px solid $cds-border-color-grey-light;",
+              "matchedText": "$cds-border-color-grey-light",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "color"
+        },
+        {
+          "tokenName": "bg-color-grey-light",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 87,
+              "column": 19,
+              "context": "      background: $cds-bg-color-grey-light;",
+              "matchedText": "$cds-bg-color-grey-light",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "color"
+        },
+        {
+          "tokenName": "$cds-gray-50",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 94,
+              "column": 21,
+              "context": "  background-color: $cds-gray-50;",
+              "matchedText": "$cds-gray-50",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "gray-300",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 104,
+              "column": 25,
+              "context": "      border: 1px solid $cds-gray-300;",
+              "matchedText": "$cds-gray-300",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "color"
+        },
+        {
+          "tokenName": "$cds-radius-small",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 105,
+              "column": 22,
+              "context": "      border-radius: $cds-radius-small;",
+              "matchedText": "$cds-radius-small",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "border"
+        },
+        {
+          "tokenName": "font-size-16",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 106,
+              "column": 18,
+              "context": "      font-size: $cds-font-size-16;",
+              "matchedText": "$cds-font-size-16",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "typography"
+        },
+        {
+          "tokenName": "blue-200",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 111,
+              "column": 36,
+              "context": "        box-shadow: 0 0 0 3px rgba($cds-blue-200, 0.1);",
+              "matchedText": "$cds-blue-200",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "color"
+        },
+        {
+          "tokenName": "$cds-green-200",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 116,
+              "column": 25,
+              "context": "      background-color: $cds-green-200;",
+              "matchedText": "$cds-green-200",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "radius-small",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 120,
+              "column": 22,
+              "context": "      border-radius: $cds-radius-small;",
+              "matchedText": "$cds-radius-small",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "border"
+        },
+        {
+          "tokenName": "green-300",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 125,
+              "column": 27,
+              "context": "        background-color: $cds-green-300;",
+              "matchedText": "$cds-green-300",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "color"
+        },
+        {
+          "tokenName": "$cds-space-40",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 135,
+              "column": 12,
+              "context": "  padding: $cds-space-40 $cds-space-16;",
+              "matchedText": "$cds-space-40",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-gray-300",
+          "tokenType": "canon-cds-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 143,
+              "column": 14,
+              "context": "      color: $cds-gray-300;",
+              "matchedText": "$cds-gray-300",
+              "formatType": "canon-cds-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$white",
+          "tokenType": "canon-bootstrap-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 117,
+              "column": 14,
+              "context": "      color: $white;",
+              "matchedText": "$white",
+              "formatType": "canon-bootstrap-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-blue-300",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 22,
+              "column": 54,
+              "context": "ackground: linear-gradient(135deg, $cds-blue-100, $cds-blue-300);",
+              "matchedText": "$cds-blue-300",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-blue-100",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 43,
+              "column": 12,
+              "context": "    color: $cds-blue-100;",
+              "matchedText": "$cds-blue-100",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-gray-600",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 76,
+              "column": 14,
+              "context": "      color: $cds-gray-600;",
+              "matchedText": "$cds-gray-600",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "800",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 84,
+              "column": 14,
+              "context": "      color: $cds-gray-800;",
+              "matchedText": "$cds-gray-800",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-gray-50",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 94,
+              "column": 21,
+              "context": "  background-color: $cds-gray-50;",
+              "matchedText": "$cds-gray-50",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-blue-200",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 109,
+              "column": 23,
+              "context": "        border-color: $cds-blue-200;",
+              "matchedText": "$cds-blue-200",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-green-200",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 116,
+              "column": 25,
+              "context": "      background-color: $cds-green-200;",
+              "matchedText": "$cds-green-200",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$white",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 117,
+              "column": 14,
+              "context": "      color: $white;",
+              "matchedText": "$white",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "$cds-green-300",
+          "tokenType": "canon-color-variables",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 125,
+              "column": 27,
+              "context": "        background-color: $cds-green-300;",
+              "matchedText": "$cds-green-300",
+              "formatType": "canon-color-variables"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        },
+        {
+          "tokenName": "@include media-breakpoint-up",
+          "tokenType": "canon-scss-mixins",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 13,
+              "column": 3,
+              "context": "  @include media-breakpoint-up(md) {",
+              "matchedText": "@include media-breakpoint-up",
+              "formatType": "canon-scss-mixins"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ],
+          "category": "breakpoint"
+        },
+        {
+          "tokenName": "@include theme",
+          "tokenType": "canon-scss-mixins",
+          "occurrences": [
+            {
+              "filePath": "src/styles/main.scss",
+              "line": 35,
+              "column": 5,
+              "context": "    @include theme('button-primary');",
+              "matchedText": "@include theme",
+              "formatType": "canon-scss-mixins"
+            }
+          ],
+          "totalCount": 1,
+          "files": [
+            "src/styles/main.scss"
+          ]
+        }
+      ],
+      "totalUsage": 99,
+      "coverage": 26,
+      "patterns": [],
+      "errors": [],
+      "summary": {
+        "totalFiles": 1,
+        "scannedFiles": 1,
+        "tokensFound": 99,
+        "uniqueTokens": 66,
+        "mostUsedToken": "space-16",
+        "coveragePercentage": 26
+      }
+    }
+  ],
+  "summary": {
+    "totalFiles": 2,
+    "averageCoverage": 33,
+    "tokensByCategory": {
+      "typography": 101,
+      "uncategorized": 137,
+      "color": 12,
+      "border": 5,
+      "breakpoint": 1
+    },
+    "teamUsage": {
+      "Design System": 157,
+      "Marketing": 99
+    },
+    "topTokens": [
+      {
+        "name": "size-0",
+        "usage": 9,
+        "category": "typography"
+      },
+      {
+        "name": "size-8",
+        "usage": 9,
+        "category": "typography"
+      },
+      {
+        "name": "size-24",
+        "usage": 8,
+        "category": "typography"
+      },
+      {
+        "name": "size-40",
+        "usage": 7,
+        "category": "typography"
+      },
+      {
+        "name": "size-56",
+        "usage": 7,
+        "category": "typography"
+      },
+      {
+        "name": "size-16",
+        "usage": 7,
+        "category": "typography"
+      },
+      {
+        "name": "size-32",
+        "usage": 6,
+        "category": "typography"
+      },
+      {
+        "name": "size-48",
+        "usage": 6,
+        "category": "typography"
+      },
+      {
+        "name": "size-64",
+        "usage": 5,
+        "category": "typography"
+      },
+      {
+        "name": "space-16",
+        "usage": 5
+      }
+    ]
+  }
+}

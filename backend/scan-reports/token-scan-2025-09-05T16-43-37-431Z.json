@@ -1,0 +1,42 @@
+{
+  "scanDate": "2025-09-05T16:43:37.432Z",
+  "totalRepositories": 1,
+  "totalTokensFound": 0,
+  "totalUniqueTokens": 0,
+  "repositories": [
+    {
+      "repository": {
+        "url": "/Users/samarmustafa/Documents/Projects/2025/VIBE-CODING/canon-design-system-repo",
+        "name": "canon-design-system",
+        "team": "Design System",
+        "type": "website",
+        "branch": "main"
+      },
+      "scanDate": "2025-09-05T16:43:37.431Z",
+      "tokensFound": [],
+      "totalUsage": 0,
+      "coverage": 0,
+      "patterns": [],
+      "errors": [
+        "fatal: repository '/Users/samarmustafa/Documents/Projects/2025/VIBE-CODING/canon-design-system-repo' does not exist\n"
+      ],
+      "summary": {
+        "totalFiles": 0,
+        "scannedFiles": 0,
+        "tokensFound": 0,
+        "uniqueTokens": 0,
+        "mostUsedToken": "",
+        "coveragePercentage": 0
+      }
+    }
+  ],
+  "summary": {
+    "totalFiles": 0,
+    "averageCoverage": 0,
+    "tokensByCategory": {},
+    "teamUsage": {
+      "Design System": 0
+    },
+    "topTokens": []
+  }
+}

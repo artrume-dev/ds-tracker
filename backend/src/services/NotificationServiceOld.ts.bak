@@ -1,0 +1,1062 @@
+import { EventEmitter } from 'events';
+import { emailService } from './EmailService';
+import { databaseService, TeamSubscription } from '../database/service';
+
+export interface TokenChange {
+  type: 'added' | 'updated' | 'removed';
+  tokenName: string;
+  category?: string;
+  oldValue?: string;
+  newValue?: string;
+  affectedFiles?: string[];
+  usageCount?: number;
+  filePath?: string;
+  description?: string;
+}
+
+export interface RepositoryChange {
+  repository: string;
+  timestamp: Date;
+  tokenChanges: TokenChange[];
+  affectedFiles: string[];
+  compareUrl?: string;
+  author?: string;
+  authorTeam?: string;
+  commitHash?: string;
+}
+
+export interface ApprovalRequest {
+  id: string;
+  contributorTeam: string;
+  targetRepository: string;
+  pullRequestId: string;
+  tokenChanges: TokenChange[];
+  reviewUrl: string;
+  status: 'pending' | 'approved' | 'rejected';
+  createdAt: Date;
+}
+
+// Enhanced interfaces for new notification workflows
+export interface ScanActivity {
+  teamName: string;
+  repository: string;
+  timestamp: Date;
+  tokensUsed: Array<{
+    name: string;
+    type: 'token' | 'component' | 'pattern';
+    usageCount: number;
+    filePaths: string[];
+  }>;
+}
+
+export interface TokenChangeReview {
+  changeId: string;
+  teamName: string;
+  status: 'pending' | 'accepted' | 'rejected';
+  comments?: string;
+  reviewedAt?: Date;
+  reviewedBy?: string;
+}
+
+export interface DesignSystemChange {
+  changeId: string;
+  changes: Array<{
+    type: 'token' | 'component' | 'pattern';
+    action: 'added' | 'modified' | 'removed';
+    name: string;
+    oldValue?: string;
+    newValue?: string;
+    filePath: string;
+    category?: 'raw' | 'foundation' | 'semantic' | 'component';
+    description?: string;
+  }>;
+  author: string;
+  authorTeam: string;
+  timestamp: Date;
+  commitHash: string;
+  repositoryUrl: string;
+  dashboardUrl: string;
+}
+
+export interface NotificationData {
+  id: string;
+  type: 'token_change' | 'pattern_update' | 'scan_complete' | 'approval_required' | 'system_alert' | 'design_system_update' | 'contribution_review';
+  title: string;
+  message: string;
+  severity: 'info' | 'warning' | 'error' | 'success';
+  metadata?: {
+    tokenName?: string;
+    teamName?: string;
+    oldValue?: string;
+    newValue?: string;
+    affectedFiles?: string[];
+    scanId?: string;
+    requestId?: string;
+    tokenChanges?: TokenChange[];
+    repositoryName?: string;
+    repositoryChange?: RepositoryChange;
+    approvalRequest?: ApprovalRequest;
+    reviewStatus?: string;
+    implementationCode?: string;
+    changeId?: string;
+  };
+  timestamp: Date;
+  read: boolean;
+  actionUrl?: string;
+}
+
+class NotificationService extends EventEmitter {
+  private notifications: Map<string, NotificationData[]> = new Map();
+  
+  constructor() {
+    super();
+    this.initializeTeamSubscriptions();
+  }
+
+  /**
+   * Initialize default team subscriptions
+   */
+  private async initializeTeamSubscriptions() {
+    console.log('🏗️ Initializing team subscriptions...');
+    
+    try {
+      // Check if teams already exist in database
+      const existingTeams = await databaseService.getTeamSubscriptions();
+      if (existingTeams.length > 0) {
+        console.log(`✅ Found ${existingTeams.length} existing team subscriptions`);
+        return;
+      }
+
+      // Setup default subscriptions for known teams
+      const defaultTeams = ['Marketing', 'Product', 'Engineering', 'Design System'];
+      
+      for (const team of defaultTeams) {
+        const subscription: TeamSubscription = {
+          teamName: team,
+          email: 'samar@teamstack.co', // Using your actual email for testing
+          tokenChanges: true,
+          patternUpdates: true,
+          scanResults: true,
+          approvalRequests: true
+        };
+        
+        await databaseService.saveTeamSubscription(subscription);
+        console.log(`✅ Initialized subscription for team: ${team}`);
+      }
+      
+      console.log(`🎯 Total teams initialized: ${defaultTeams.length}`);
+    } catch (error) {
+      console.error('❌ Error initializing team subscriptions:', error);
+    }
+  }
+
+  /**
+   * Create and send a notification
+   */
+  async createNotification(notification: Omit<NotificationData, 'id' | 'timestamp' | 'read'>): Promise<string> {
+    const notificationData: NotificationData = {
+      ...notification,
+      id: `notif-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      timestamp: new Date(),
+      read: false
+    };
+
+    // Determine target teams based on notification type and metadata
+    const targetTeams = await this.getTargetTeams(notificationData);
+    
+    // Store notification for each target team
+    targetTeams.forEach(teamName => {
+      if (!this.notifications.has(teamName)) {
+        this.notifications.set(teamName, []);
+      }
+      this.notifications.get(teamName)!.push(notificationData);
+      
+      // Keep only last 100 notifications per team
+      const teamNotifications = this.notifications.get(teamName)!;
+      if (teamNotifications.length > 100) {
+        teamNotifications.splice(0, teamNotifications.length - 100);
+      }
+    });
+
+    // Emit real-time notification event
+    targetTeams.forEach(teamName => {
+      this.emit('notification', {
+        teamName,
+        notification: notificationData
+      });
+    });
+
+    // Send email/slack notifications if configured
+    await this.sendExternalNotifications(notificationData, targetTeams);
+
+    console.log(`📢 Notification created: ${notificationData.title} (${targetTeams.join(', ')})`);
+    return notificationData.id;
+  }
+
+  /**
+   * Determine which teams should receive this notification
+   */
+  private async getTargetTeams(notification: NotificationData): Promise<string[]> {
+    const allTeams = await databaseService.getTeamSubscriptions();
+    const teamNames = allTeams.map(team => team.teamName);
+    
+    // If team is specified in metadata, target that team
+    if (notification.metadata?.teamName) {
+      return [notification.metadata.teamName];
+    }
+
+    // For system-wide notifications, target all teams
+    if (notification.type === 'system_alert' || notification.type === 'scan_complete') {
+      return teamNames;
+    }
+
+    // For token/pattern changes, target all teams
+    return teamNames; // For now, send to all teams - could be refined based on usage data
+  }
+
+  /**
+   * Get notifications for a specific team
+   */
+  getTeamNotifications(teamName: string, limit: number = 50): NotificationData[] {
+    const notifications = this.notifications.get(teamName) || [];
+    return notifications
+      .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
+      .slice(0, limit);
+  }
+
+  /**
+   * Mark notification as read
+   */
+  markAsRead(teamName: string, notificationId: string): boolean {
+    const notifications = this.notifications.get(teamName);
+    if (!notifications) return false;
+
+    const notification = notifications.find(n => n.id === notificationId);
+    if (notification) {
+      notification.read = true;
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Mark all notifications as read for a team
+   */
+  markAllAsRead(teamName: string): number {
+    const notifications = this.notifications.get(teamName);
+    if (!notifications) return 0;
+
+    const unreadCount = notifications.filter(n => !n.read).length;
+    notifications.forEach(n => n.read = true);
+    return unreadCount;
+  }
+
+  /**
+   * Get unread notification count for a team
+   */
+  getUnreadCount(teamName: string): number {
+    const notifications = this.notifications.get(teamName) || [];
+    return notifications.filter(n => !n.read).length;
+  }
+
+  /**
+   * Update team subscription preferences
+   */
+  async updateTeamSubscription(teamName: string, subscription: Partial<TeamSubscription>): Promise<void> {
+    const existing = await databaseService.getTeamSubscription(teamName) || {
+      teamName,
+      email: '',
+      tokenChanges: true,
+      patternUpdates: true,
+      scanResults: true,
+      approvalRequests: true
+    };
+
+    await databaseService.saveTeamSubscription({ ...existing, ...subscription });
+  }
+
+  /**
+   * Get team subscription settings
+   */
+  async getTeamSubscription(teamName: string): Promise<TeamSubscription | null> {
+    return await databaseService.getTeamSubscription(teamName);
+  }
+
+  /**
+   * Get all team subscriptions
+   */
+  async getAllSubscriptions(): Promise<TeamSubscription[]> {
+    return await databaseService.getTeamSubscriptions();
+  }
+
+  /**
+   * Remove team subscription
+   */
+  async removeTeamSubscription(teamName: string): Promise<boolean> {
+    return await databaseService.deleteTeamSubscription(teamName);
+  }
+
+  /**
+   * Determine which teams should receive this notification
+   */
+  private getTargetTeams(notification: NotificationData): string[] {
+    const allTeams = Array.from(this.teamSubscriptions.keys());
+    
+    // If team is specified in metadata, target that team
+    if (notification.metadata?.teamName) {
+      return [notification.metadata.teamName];
+    }
+
+    // For system-wide notifications, target all teams
+    if (notification.type === 'system_alert' || notification.type === 'scan_complete') {
+      return allTeams;
+    }
+
+    // For token/pattern changes, target teams that use those tokens
+    return allTeams; // For now, send to all teams - could be refined based on usage data
+  }
+
+  /**
+   * Send external notifications (email, Slack, etc.)
+   */
+  private async sendExternalNotifications(notification: NotificationData, targetTeams: string[]): Promise<void> {
+    for (const teamName of targetTeams) {
+      const subscription = this.teamSubscriptions.get(teamName);
+      if (!subscription) continue;
+
+      // Check if team wants this type of notification
+      const wantsNotification = this.shouldSendNotification(notification.type, subscription.preferences);
+      if (!wantsNotification) continue;
+
+      // Send email notification
+      if (subscription.email) {
+        try {
+          const emailSent = await emailService.sendNotification(notification, subscription.email, teamName);
+          if (emailSent) {
+            console.log(`✅ Email notification sent to ${teamName} (${subscription.email})`);
+          } else {
+            console.log(`❌ Failed to send email notification to ${teamName} (${subscription.email})`);
+          }
+        } catch (error) {
+          console.error(`❌ Failed to send email to ${teamName}:`, error);
+        }
+      }
+
+      // Send Slack notification (placeholder for future implementation)
+      if (subscription.slack) {
+        console.log(`💬 Would send Slack notification to ${teamName}:`, {
+          channel: subscription.slack,
+          title: notification.title,
+          message: notification.message
+        });
+      }
+    }
+  }
+
+  /**
+   * Check if notification should be sent based on preferences
+   */
+  private shouldSendNotification(type: NotificationData['type'], preferences: TeamSubscription['preferences']): boolean {
+    switch (type) {
+      case 'token_change':
+        return preferences.tokenChanges;
+      case 'pattern_update':
+        return preferences.patternUpdates;
+      case 'scan_complete':
+        return preferences.scanResults;
+      case 'approval_required':
+        return preferences.approvalRequests;
+      case 'system_alert':
+        return true; // Always send system alerts
+      default:
+        return false;
+    }
+  }
+
+  /**
+   * Create notifications for token changes
+   */
+  async notifyTokenChange(tokenName: string, oldValue: string, newValue: string, affectedTeams: string[], affectedFiles: string[]): Promise<void> {
+    await this.createNotification({
+      type: 'token_change',
+      title: `Token "${tokenName}" Updated`,
+      message: `Design token value changed from "${oldValue}" to "${newValue}". ${affectedFiles.length} files may be affected.`,
+      severity: 'warning',
+      metadata: {
+        tokenName,
+        oldValue,
+        newValue,
+        affectedFiles
+      },
+      actionUrl: `/tokens/${encodeURIComponent(tokenName)}`
+    });
+  }
+
+  /**
+   * Create notifications for scan completion with detailed token changes
+   */
+  async notifyScanComplete(scanId: string, results: { 
+    tokensFound: number; 
+    newTokens: number; 
+    issues: number;
+    tokenChanges?: TokenChange[];
+    repositoryName?: string;
+  }): Promise<void> {
+    const { tokenChanges = [], repositoryName } = results;
+    
+    // If this is a Design System repository update, notify all subscribed teams
+    if (repositoryName === 'canon-design-system' && tokenChanges.length > 0) {
+      await this.notifyDesignSystemChanges(scanId, tokenChanges);
+    } else {
+      // Regular scan completion notification
+      await this.createNotification({
+        type: 'scan_complete',
+        title: 'Token Scan Completed',
+        message: `Found ${results.tokensFound} tokens (${results.newTokens} new). ${results.issues} issues detected.`,
+        severity: results.issues > 0 ? 'warning' : 'success',
+        metadata: {
+          scanId,
+          repositoryName
+        },
+        actionUrl: '/'
+      });
+    }
+  }
+
+  /**
+   * Notify all subscribed teams about Design System changes
+   */
+  async notifyDesignSystemChanges(scanId: string, tokenChanges: TokenChange[]): Promise<void> {
+    const addedTokens = tokenChanges.filter(t => t.type === 'added');
+    const updatedTokens = tokenChanges.filter(t => t.type === 'updated');
+    const removedTokens = tokenChanges.filter(t => t.type === 'removed');
+
+    // Create summary message
+    let message = 'Canon Design System has been updated:\n';
+    if (addedTokens.length > 0) {
+      message += `\n✅ ${addedTokens.length} token(s) added`;
+    }
+    if (updatedTokens.length > 0) {
+      message += `\n🔄 ${updatedTokens.length} token(s) updated`;
+    }
+    if (removedTokens.length > 0) {
+      message += `\n❌ ${removedTokens.length} token(s) removed`;
+    }
+
+    // Get all subscribed teams
+    const subscribedTeams = Array.from(this.teamSubscriptions.values())
+      .filter(sub => sub.preferences.tokenChanges)
+      .map(sub => sub.teamName);
+
+    // Create notification for each subscribed team
+    for (const teamName of subscribedTeams) {
+      await this.createNotification({
+        type: 'token_change',
+        title: 'Design System Updated',
+        message: message.trim(),
+        severity: removedTokens.length > 0 ? 'warning' : 'info',
+        metadata: {
+          scanId,
+          tokenChanges,
+          repositoryName: 'canon-design-system'
+        },
+        actionUrl: '/'
+      });
+    }
+  }
+
+  /**
+   * Create notifications for approval requests
+   */
+  async notifyApprovalRequired(requestId: string, teamName: string, tokenName: string): Promise<void> {
+    await this.createNotification({
+      type: 'approval_required',
+      title: 'Token Change Approval Required',
+      message: `Team "${teamName}" requested approval for changes to "${tokenName}".`,
+      severity: 'info',
+      metadata: {
+        requestId,
+        teamName,
+        tokenName
+      },
+      actionUrl: `/change-requests/${requestId}`
+    });
+  }
+
+  /**
+   * Send Design System repository update notifications to all subscribed teams
+   */
+  async notifyDesignSystemUpdate(repositoryChange: RepositoryChange): Promise<void> {
+    try {
+      // Get all subscribed teams
+      const teams = await this.getSubscribedTeams();
+      
+      if (teams.length === 0) {
+        console.log('📧 No teams subscribed for Design System updates');
+        return;
+      }
+
+      // Create notification for each team
+      for (const team of teams) {
+        const notification: NotificationData = {
+          id: `ds-update-${Date.now()}-${team.id}`,
+          type: 'design_system_update',
+          title: `Design System Update: ${repositoryChange.repository}`,
+          message: this.formatDesignSystemUpdateMessage(repositoryChange),
+          severity: 'info',
+          metadata: {
+            repositoryName: repositoryChange.repository,
+            teamName: team.name,
+            tokenChanges: repositoryChange.tokenChanges,
+            affectedFiles: repositoryChange.affectedFiles
+          },
+          timestamp: new Date(),
+          read: false,
+          actionUrl: repositoryChange.compareUrl
+        };
+
+        // Send email notification (mock for now since emailService needs to be injected)
+        console.log(`📧 Design System update notification sent to ${team.name} (${team.contactEmail})`);
+      }
+
+      console.log(`✅ Design System update notifications sent to ${teams.length} teams`);
+    } catch (error) {
+      console.error('❌ Error sending Design System update notifications:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Send contribution review notification to Design System admin
+   */
+  async notifyContributionReview(approvalRequest: ApprovalRequest): Promise<void> {
+    try {
+      // Get Design System admin email (this would come from config in real implementation)
+      const adminEmail = 'design-system-admin@canon.com';
+      
+      const notification: NotificationData = {
+        id: `contribution-review-${Date.now()}`,
+        type: 'contribution_review',
+        title: `Contribution Review Required: ${approvalRequest.contributorTeam}`,
+        message: this.formatContributionReviewMessage(approvalRequest),
+        severity: 'warning',
+        metadata: {
+          teamName: approvalRequest.contributorTeam,
+          repositoryName: approvalRequest.targetRepository,
+          requestId: approvalRequest.pullRequestId,
+          tokenChanges: approvalRequest.tokenChanges
+        },
+        timestamp: new Date(),
+        read: false,
+        actionUrl: approvalRequest.reviewUrl
+      };
+
+      // Send email notification to admin (mock for now)
+      console.log(`📧 Contribution review notification sent to admin for ${approvalRequest.contributorTeam}`);
+    } catch (error) {
+      console.error('❌ Error sending contribution review notification:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get subscribed teams (mock implementation)
+   */
+  private async getSubscribedTeams(): Promise<Array<{id: string, name: string, contactEmail: string}>> {
+    // This would typically fetch from database
+    return [
+      { id: '1', name: 'Marketing Team', contactEmail: 'marketing@canon.com' },
+      { id: '2', name: 'Product Team', contactEmail: 'product@canon.com' },
+      { id: '3', name: 'Engineering Team', contactEmail: 'engineering@canon.com' },
+      { id: '4', name: 'Design Team', contactEmail: 'design@canon.com' }
+    ];
+  }
+
+  /**
+   * Format Design System update message with token changes
+   */
+  private formatDesignSystemUpdateMessage(repositoryChange: RepositoryChange): string {
+    const { repository, tokenChanges } = repositoryChange;
+    
+    let message = `The ${repository} repository has been updated with the following token changes:\n\n`;
+    
+    const addedTokens = tokenChanges.filter((c: TokenChange) => c.type === 'added');
+    const updatedTokens = tokenChanges.filter((c: TokenChange) => c.type === 'updated');
+    const removedTokens = tokenChanges.filter((c: TokenChange) => c.type === 'removed');
+    
+    if (addedTokens.length > 0) {
+      message += `🆕 Added Tokens (${addedTokens.length}):\n`;
+      addedTokens.forEach((token: TokenChange) => {
+        message += `  • ${token.category}/${token.tokenName}: ${token.newValue}\n`;
+      });
+      message += '\n';
+    }
+    
+    if (updatedTokens.length > 0) {
+      message += `📝 Updated Tokens (${updatedTokens.length}):\n`;
+      updatedTokens.forEach((token: TokenChange) => {
+        message += `  • ${token.category}/${token.tokenName}: ${token.oldValue} → ${token.newValue}\n`;
+      });
+      message += '\n';
+    }
+    
+    if (removedTokens.length > 0) {
+      message += `🗑️ Removed Tokens (${removedTokens.length}):\n`;
+      removedTokens.forEach((token: TokenChange) => {
+        message += `  • ${token.category}/${token.tokenName}: ${token.oldValue}\n`;
+      });
+      message += '\n';
+    }
+    
+    message += `Total changes: ${tokenChanges.length} tokens affected`;
+    
+    return message;
+  }
+
+  /**
+   * Format contribution review message
+   */
+  private formatContributionReviewMessage(approvalRequest: ApprovalRequest): string {
+    const { contributorTeam, targetRepository, tokenChanges } = approvalRequest;
+    
+    let message = `The ${contributorTeam} team has made contributions to ${targetRepository} that require your review:\n\n`;
+    
+    message += `📋 Summary:\n`;
+    message += `  • Contributor: ${contributorTeam}\n`;
+    message += `  • Target Repository: ${targetRepository}\n`;
+    message += `  • Changes: ${tokenChanges.length} token modifications\n\n`;
+    
+    message += `🔍 Actions Required:\n`;
+    message += `  • Review the proposed changes\n`;
+    message += `  • Approve, reject, or request modifications\n`;
+    message += `  • Provide feedback or comments if needed\n\n`;
+    
+    message += `Please review these changes to ensure they align with Design System standards.`;
+    
+    return message;
+  }
+
+  // ========================================
+  // NEW ENHANCED NOTIFICATION WORKFLOWS
+  // ========================================
+
+  /**
+   * 1. Handle team scan activity - don't notify all teams when a team scans their own repo
+   */
+  async handleScanActivity(scanActivity: ScanActivity): Promise<void> {
+    const { teamName, repository, tokensUsed } = scanActivity;
+    
+    // If team scans their own repository, only send scan summary to themselves
+    if (this.isTeamOwnRepository(teamName, repository)) {
+      await this.createNotification({
+        type: 'scan_complete',
+        title: `Scan Complete: ${repository}`,
+        message: `Your team's repository scan found ${tokensUsed.length} Design System tokens in use.`,
+        severity: 'success',
+        metadata: {
+          teamName,
+          repositoryName: repository,
+          scanId: `scan-${Date.now()}`
+        },
+        actionUrl: `/team/${teamName}/scan-results`
+      });
+      
+      console.log(`📊 Scan notification sent to ${teamName} for their own repository: ${repository}`);
+      return;
+    }
+
+    // If team scans Design System repo or other repos, different logic applies
+    await this.handleExternalRepositoryScan(scanActivity);
+  }
+
+  /**
+   * 2. Notify Design System admin when other teams use DS tokens
+   */
+  async notifyDesignSystemUsage(scanActivity: ScanActivity): Promise<void> {
+    const { teamName, repository, tokensUsed } = scanActivity;
+    
+    // Only notify admin if team is using Design System tokens in their own repo
+    if (!this.isDesignSystemRepository(repository) && tokensUsed.length > 0) {
+      await this.createNotification({
+        type: 'system_alert',
+        title: `Design System Usage: ${teamName}`,
+        message: `${teamName} is using ${tokensUsed.length} Design System tokens in ${repository}. View usage details for tracking and support.`,
+        severity: 'info',
+        metadata: {
+          teamName: 'Design System', // Target DS admin
+          repositoryName: repository,
+          affectedFiles: tokensUsed.flatMap(token => token.filePaths)
+        },
+        actionUrl: `/admin/usage-tracking/${teamName}`
+      });
+      
+      console.log(`🔔 Design System admin notified of token usage by ${teamName} in ${repository}`);
+    }
+  }
+
+  /**
+   * 3. Enhanced Design System change notifications with detailed information
+   */
+  async notifyDesignSystemTokenChanges(dsChange: DesignSystemChange): Promise<void> {
+    try {
+      // Only notify if author is from Design System team
+      if (dsChange.authorTeam !== 'Design System') {
+        console.log(`⏭️ Skipping DS notification - author ${dsChange.author} is not from Design System team`);
+        return;
+      }
+
+      // Get all subscribed teams (excluding Design System team to avoid self-notification)
+      const subscribedTeams = Array.from(this.teamSubscriptions.values())
+        .filter(sub => sub.preferences.tokenChanges && sub.teamName !== 'Design System');
+
+      if (subscribedTeams.length === 0) {
+        console.log('📧 No teams subscribed for Design System token change notifications');
+        return;
+      }
+
+      // Create detailed notification for each team
+      for (const team of subscribedTeams) {
+        const notification: NotificationData = {
+          id: `ds-change-${dsChange.changeId}-${team.teamName}`,
+          type: 'design_system_update',
+          title: `Design System Updated: ${dsChange.changes.length} Changes`,
+          message: this.formatDetailedDesignSystemMessage(dsChange),
+          severity: this.getChangeSeverity(dsChange.changes),
+          metadata: {
+            teamName: team.teamName,
+            repositoryName: 'canon-design-system',
+            tokenChanges: this.convertToTokenChanges(dsChange.changes),
+            affectedFiles: dsChange.changes.map(c => c.filePath)
+          },
+          timestamp: new Date(),
+          read: false,
+          actionUrl: dsChange.dashboardUrl
+        };
+
+        // Store notification
+        if (!this.notifications.has(team.teamName)) {
+          this.notifications.set(team.teamName, []);
+        }
+        this.notifications.get(team.teamName)!.push(notification);
+
+        // Send enhanced email with review options
+        await this.sendEnhancedDesignSystemEmail(team, dsChange, notification);
+      }
+
+      console.log(`✅ Enhanced Design System change notifications sent to ${subscribedTeams.length} teams`);
+    } catch (error) {
+      console.error('❌ Error sending enhanced Design System notifications:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * 4. Handle team review responses (Accept/Reject changes)
+   */
+  async handleTokenChangeReview(review: TokenChangeReview): Promise<void> {
+    try {
+      // Notify Design System team of the review
+      await this.createNotification({
+        type: 'approval_required',
+        title: `Team Review: ${review.teamName} ${review.status} changes`,
+        message: `${review.teamName} has ${review.status} the Design System changes. ${review.comments ? `Comment: "${review.comments}"` : ''}`,
+        severity: review.status === 'accepted' ? 'success' : review.status === 'rejected' ? 'warning' : 'info',
+        metadata: {
+          teamName: 'Design System', // Target DS team
+          requestId: review.changeId,
+          reviewStatus: review.status
+        },
+        actionUrl: `/admin/reviews/${review.changeId}`
+      });
+
+      // If accepted, prepare implementation code for the team
+      if (review.status === 'accepted') {
+        await this.provideImplementationGuidance(review);
+      }
+
+      console.log(`📝 Review processed: ${review.teamName} ${review.status} change ${review.changeId}`);
+    } catch (error) {
+      console.error('❌ Error handling token change review:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Provide implementation code and guidance when team accepts changes
+   */
+  private async provideImplementationGuidance(review: TokenChangeReview): Promise<void> {
+    // This would generate actual implementation code based on the changes
+    const implementationCode = this.generateImplementationCode(review.changeId);
+    
+    await this.createNotification({
+      type: 'token_change',
+      title: `Implementation Ready: Design System Changes`,
+      message: `Since you accepted the changes, here's the implementation code for your repository. Click to view detailed integration steps.`,
+      severity: 'success',
+      metadata: {
+        teamName: review.teamName,
+        requestId: review.changeId,
+        implementationCode
+      },
+      actionUrl: `/team/${review.teamName}/implementation/${review.changeId}`
+    });
+  }
+
+  /**
+   * Generate implementation code for accepted changes
+   */
+  private generateImplementationCode(changeId: string): string {
+    // This would be dynamic based on actual changes
+    return `
+// Updated Design System Tokens - Implementation Guide
+// Change ID: ${changeId}
+
+// 1. Update your package.json
+npm install @canon/design-tokens@latest
+
+// 2. Update token imports
+import { 
+  colorPrimary500,
+  spacingMedium,
+  typographyHeadingLarge 
+} from '@canon/design-tokens';
+
+// 3. Replace old token references
+// OLD: var(--color-primary)
+// NEW: var(--color-primary-500)
+
+// 4. Test your changes
+npm run test:tokens
+    `.trim();
+  }
+
+  /**
+   * Helper: Check if repository belongs to the team
+   */
+  private isTeamOwnRepository(teamName: string, repository: string): boolean {
+    const teamRepoPatterns = {
+      'Marketing': ['marketing-', 'brand-', 'campaigns-'],
+      'Product': ['product-', 'features-', 'roadmap-'],
+      'Engineering': ['backend-', 'frontend-', 'infrastructure-'],
+      'Design System': ['canon-', 'design-system-', 'ds-']
+    };
+
+    const patterns = teamRepoPatterns[teamName as keyof typeof teamRepoPatterns] || [];
+    return patterns.some(pattern => repository.toLowerCase().includes(pattern));
+  }
+
+  /**
+   * Helper: Check if repository is Design System repository
+   */
+  private isDesignSystemRepository(repository: string): boolean {
+    return repository.toLowerCase().includes('canon') || 
+           repository.toLowerCase().includes('design-system');
+  }
+
+  /**
+   * Helper: Handle external repository scans
+   */
+  private async handleExternalRepositoryScan(scanActivity: ScanActivity): Promise<void> {
+    // If scanning Design System repo, notify admin about external team interest
+    if (this.isDesignSystemRepository(scanActivity.repository)) {
+      await this.notifyDesignSystemUsage(scanActivity);
+    }
+  }
+
+  /**
+   * Helper: Format detailed Design System change message
+   */
+  private formatDetailedDesignSystemMessage(dsChange: DesignSystemChange): string {
+    const { changes, author, commitHash } = dsChange;
+    
+    let message = `🎨 Canon Design System has been updated by ${author}:\n\n`;
+    
+    const addedChanges = changes.filter(c => c.action === 'added');
+    const modifiedChanges = changes.filter(c => c.action === 'modified');
+    const removedChanges = changes.filter(c => c.action === 'removed');
+    
+    if (addedChanges.length > 0) {
+      message += `🆕 NEW (${addedChanges.length}):\n`;
+      addedChanges.forEach(change => {
+        message += `  • ${change.type}: ${change.name} = "${change.newValue}"\n`;
+        message += `    📁 ${change.filePath}\n`;
+        if (change.description) {
+          message += `    📝 ${change.description}\n`;
+        }
+        message += '\n';
+      });
+    }
+    
+    if (modifiedChanges.length > 0) {
+      message += `🔄 CHANGED (${modifiedChanges.length}):\n`;
+      modifiedChanges.forEach(change => {
+        message += `  • ${change.type}: ${change.name}\n`;
+        message += `    📉 Was: "${change.oldValue}"\n`;
+        message += `    📈 Now: "${change.newValue}"\n`;
+        message += `    📁 ${change.filePath}\n`;
+        if (change.description) {
+          message += `    📝 ${change.description}\n`;
+        }
+        message += '\n';
+      });
+    }
+    
+    if (removedChanges.length > 0) {
+      message += `🗑️ REMOVED (${removedChanges.length}):\n`;
+      removedChanges.forEach(change => {
+        message += `  • ${change.type}: ${change.name} (was: "${change.oldValue}")\n`;
+        message += `    📁 ${change.filePath}\n`;
+        if (change.description) {
+          message += `    📝 ${change.description}\n`;
+        }
+        message += '\n';
+      });
+    }
+    
+    message += `\n🔗 Commit: ${commitHash.substring(0, 8)}\n`;
+    message += `👥 By: ${author} (Design System Team)`;
+    
+    return message;
+  }
+
+  /**
+   * Helper: Determine severity based on changes
+   */
+  private getChangeSeverity(changes: DesignSystemChange['changes']): NotificationData['severity'] {
+    const hasRemovals = changes.some(c => c.action === 'removed');
+    const hasBreakingChanges = changes.some(c => 
+      c.action === 'modified' && 
+      (c.oldValue && c.newValue && c.oldValue !== c.newValue)
+    );
+    
+    if (hasRemovals) return 'error';
+    if (hasBreakingChanges) return 'warning';
+    return 'info';
+  }
+
+  /**
+   * Helper: Convert DesignSystemChange to TokenChange format
+   */
+  private convertToTokenChanges(changes: DesignSystemChange['changes']): TokenChange[] {
+    return changes.map(change => ({
+      type: change.action as 'added' | 'updated' | 'removed',
+      tokenName: change.name,
+      category: change.category,
+      oldValue: change.oldValue,
+      newValue: change.newValue,
+      filePath: change.filePath,
+      description: change.description
+    }));
+  }
+
+  /**
+   * Helper: Send enhanced email with review options
+   */
+  private async sendEnhancedDesignSystemEmail(
+    team: TeamSubscription, 
+    dsChange: DesignSystemChange, 
+    notification: NotificationData
+  ): Promise<void> {
+    if (!team.email) return;
+
+    try {
+      // For now, use the existing sendNotification method
+      // TODO: Implement enhanced email with HTML content in EmailService
+      const emailSent = await emailService.sendNotification(
+        notification, 
+        team.email, 
+        team.teamName
+      );
+      
+      if (emailSent) {
+        console.log(`✅ Enhanced email notification sent to ${team.teamName} (${team.email})`);
+      }
+    } catch (error) {
+      console.error(`❌ Failed to send enhanced email to ${team.teamName}:`, error);
+    }
+  }
+
+  /**
+   * Helper: Generate enhanced email HTML with review options
+   */
+  private generateEnhancedEmailHTML(
+    team: TeamSubscription, 
+    dsChange: DesignSystemChange, 
+    notification: NotificationData
+  ): string {
+    const baseUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+    const reviewUrl = `${baseUrl}/team/${team.teamName}/review/${dsChange.changeId}`;
+    
+    return `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Design System Update</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: #667eea; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+        .content { background: #f8f9fa; padding: 20px; border-radius: 0 0 8px 8px; }
+        .change-item { background: white; margin: 10px 0; padding: 15px; border-radius: 6px; border-left: 4px solid #667eea; }
+        .buttons { text-align: center; margin: 30px 0; }
+        .btn { display: inline-block; padding: 12px 24px; margin: 0 10px; text-decoration: none; border-radius: 6px; font-weight: bold; }
+        .btn-accept { background: #28a745; color: white; }
+        .btn-reject { background: #dc3545; color: white; }
+        .btn-view { background: #667eea; color: white; }
+        .file-path { font-family: monospace; background: #e9ecef; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Canon Design System Update</h1>
+            <p>Changes by ${dsChange.author} • ${dsChange.changes.length} modifications</p>
+        </div>
+        <div class="content">
+            <h2>What Changed:</h2>
+            ${dsChange.changes.map(change => `
+                <div class="change-item">
+                    <h3>${this.getChangeIcon(change.action)} ${change.name}</h3>
+                    <p><strong>Type:</strong> ${change.type} | <strong>Action:</strong> ${change.action}</p>
+                    ${change.oldValue ? `<p><strong>Old Value:</strong> <code>${change.oldValue}</code></p>` : ''}
+                    ${change.newValue ? `<p><strong>New Value:</strong> <code>${change.newValue}</code></p>` : ''}
+                    <p><strong>File:</strong> <span class="file-path">${change.filePath}</span></p>
+                    ${change.description ? `<p><strong>Description:</strong> ${change.description}</p>` : ''}
+                </div>
+            `).join('')}
+            
+            <div class="buttons">
+                <h3>Your Action Required:</h3>
+                <p>Please review these changes and let us know how they affect your team:</p>
+                <a href="${reviewUrl}?action=accept" class="btn btn-accept">✅ Accept Changes</a>
+                <a href="${reviewUrl}?action=reject" class="btn btn-reject">❌ Needs Review</a>
+                <a href="${dsChange.dashboardUrl}" class="btn btn-view">📊 View Dashboard</a>
+            </div>
+            
+            <p><small>
+                <strong>Repository:</strong> <a href="${dsChange.repositoryUrl}">${dsChange.repositoryUrl}</a><br>
+                <strong>Commit:</strong> ${dsChange.commitHash}<br>
+                <strong>Time:</strong> ${dsChange.timestamp.toISOString()}
+            </small></p>
+        </div>
+    </div>
+</body>
+</html>
+    `;
+  }
+
+  /**
+   * Helper: Get emoji icon for change actions
+   */
+  private getChangeIcon(action: string): string {
+    switch (action) {
+      case 'added': return '🆕';
+      case 'modified': return '🔄';
+      case 'removed': return '🗑️';
+      default: return '📝';
+    }
+  }
+}
+
+export const notificationService = new NotificationService();

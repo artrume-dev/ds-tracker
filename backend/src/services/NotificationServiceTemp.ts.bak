@@ -1,0 +1,397 @@
+import { EventEmitter } from 'events';
+import { emailService } from './EmailService';
+
+export interface TokenChange {
+  type: 'added' | 'updated' | 'removed';
+  tokenName: string;
+  category?: string;
+  oldValue?: string;
+  newValue?: string;
+  affectedFiles?: string[];
+  usageCount?: number;
+  filePath?: string;
+  description?: string;
+}
+
+export interface RepositoryChange {
+  repository: string;
+  timestamp: Date;
+  tokenChanges: TokenChange[];
+  affectedFiles: string[];
+  compareUrl?: string;
+  author?: string;
+  authorTeam?: string;
+  commitHash?: string;
+}
+
+export interface ApprovalRequest {
+  id: string;
+  contributorTeam: string;
+  targetRepository: string;
+  pullRequestId: string;
+  tokenChanges: TokenChange[];
+  reviewUrl: string;
+  status: 'pending' | 'approved' | 'rejected';
+  createdAt: Date;
+}
+
+export interface ScanActivity {
+  teamName: string;
+  repository: string;
+  timestamp: Date;
+  tokensUsed: Array<{
+    name: string;
+    type: 'token' | 'component' | 'pattern';
+    usageCount: number;
+    filePaths: string[];
+  }>;
+}
+
+export interface TokenChangeReview {
+  id: string;
+  tokenName: string;
+  changeType: 'update' | 'deprecation' | 'removal';
+  proposedValue?: string;
+  impact: {
+    severity: 'low' | 'medium' | 'high' | 'critical';
+    affectedTeams: string[];
+    affectedRepositories: string[];
+    estimatedEffort: string;
+  };
+  timeline: {
+    reviewDeadline: Date;
+    implementationDeadline?: Date;
+    migrationPhases?: Array<{
+      phase: string;
+      deadline: Date;
+      description: string;
+    }>;
+  };
+  approvals: Array<{
+    teamName: string;
+    status: 'pending' | 'approved' | 'rejected' | 'requires-discussion';
+    timestamp?: Date;
+    comments?: string;
+    conditions?: string[];
+  }>;
+  status: 'draft' | 'under-review' | 'approved' | 'rejected' | 'implemented';
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface NotificationPreferences {
+  tokenChanges: boolean;
+  patternUpdates: boolean;
+  scanResults: boolean;
+  approvalRequests: boolean;
+}
+
+export interface NotificationData {
+  id: string;
+  type: 'token-change' | 'pattern-update' | 'scan-complete' | 'approval-request' | 'system-update' | 'design-system-change';
+  title: string;
+  message: string;
+  severity: 'info' | 'warning' | 'error' | 'success';
+  teamName: string;
+  metadata?: any;
+  timestamp: Date;
+  read: boolean;
+  actionUrl?: string;
+}
+
+export interface TeamSubscription {
+  teamName: string;
+  email: string;
+  preferences: NotificationPreferences;
+  slack?: string;
+}
+
+class NotificationService extends EventEmitter {
+  private notifications: Map<string, NotificationData[]> = new Map();
+  private teamSubscriptions: Map<string, TeamSubscription> = new Map();
+  
+  constructor() {
+    super();
+    this.initializeTeamSubscriptions();
+  }
+
+  private async initializeTeamSubscriptions() {
+    console.log('🏗️ Initializing team subscriptions...');
+    
+    const defaultTeams = ['Marketing', 'Product', 'Engineering', 'Design System'];
+    
+    defaultTeams.forEach(team => {
+      const subscription: TeamSubscription = {
+        teamName: team,
+        email: 'samar@teamstack.co',
+        preferences: {
+          tokenChanges: true,
+          patternUpdates: true,
+          scanResults: true,
+          approvalRequests: true
+        }
+      };
+      
+      this.teamSubscriptions.set(team, subscription);
+      console.log(`✅ Initialized subscription for team: ${team}`);
+    });
+    
+    console.log(`🎯 Total teams initialized: ${this.teamSubscriptions.size}`);
+  }
+
+  async createNotification(notification: Omit<NotificationData, 'id' | 'timestamp' | 'read'>): Promise<string> {
+    const notificationData: NotificationData = {
+      ...notification,
+      id: `notif-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      timestamp: new Date(),
+      read: false
+    };
+
+    if (!this.notifications.has(notification.teamName)) {
+      this.notifications.set(notification.teamName, []);
+    }
+    
+    this.notifications.get(notification.teamName)!.push(notificationData);
+
+    await this.sendNotificationToTeam(notification.teamName, notificationData);
+    
+    this.emit('notification-created', notificationData);
+    
+    return notificationData.id;
+  }
+
+  subscribeTeam(teamName: string, subscription: Partial<TeamSubscription>): void {
+    const existing = this.teamSubscriptions.get(teamName) || {
+      teamName,
+      email: 'samar@teamstack.co',
+      preferences: {
+        tokenChanges: true,
+        patternUpdates: true,
+        scanResults: true,
+        approvalRequests: true
+      }
+    };
+
+    this.teamSubscriptions.set(teamName, { ...existing, ...subscription });
+    console.log(`✅ Team subscription updated for: ${teamName}`);
+    this.emit('subscription-updated', teamName, subscription);
+  }
+
+  getTeamSubscription(teamName: string): TeamSubscription | null {
+    return this.teamSubscriptions.get(teamName) || null;
+  }
+
+  getAllSubscribedTeams(): TeamSubscription[] {
+    this.teamSubscriptions.forEach((subscription, teamName) => {
+      console.log(`📧 Team: ${teamName}, Email: ${subscription.email}`);
+    });
+    
+    return Array.from(this.teamSubscriptions.values());
+  }
+
+  unsubscribeTeam(teamName: string): boolean {
+    return this.teamSubscriptions.delete(teamName);
+  }
+
+  async getRelevantTeams(tokenNames?: string[]): Promise<string[]> {
+    const allTeams = Array.from(this.teamSubscriptions.keys());
+    
+    if (!tokenNames || tokenNames.length === 0) {
+      return allTeams;
+    }
+
+    return allTeams;
+  }
+
+  private async sendNotificationToTeam(teamName: string, notification: NotificationData): Promise<void> {
+    try {
+      const subscription = this.teamSubscriptions.get(teamName);
+      if (!subscription) {
+        console.log(`⚠️ No subscription found for team: ${teamName}`);
+        return;
+      }
+
+      const wantsNotification = this.shouldSendNotification(notification.type, subscription.preferences);
+      if (!wantsNotification) {
+        console.log(`📧 Team ${teamName} has disabled ${notification.type} notifications`);
+        return;
+      }
+
+      const emailSent = await emailService.sendNotificationEmail({
+        to: subscription.email,
+        subject: `${notification.severity.toUpperCase()}: ${notification.title}`,
+        notification
+      });
+
+      if (emailSent) {
+        console.log(`✅ Email notification sent to ${teamName} (${subscription.email})`);
+      }
+
+      if (subscription.slack) {
+        console.log(`📱 Slack notification sent to ${subscription.slack}`);
+      }
+
+    } catch (error) {
+      console.error(`❌ Failed to send notification to ${teamName}:`, error);
+    }
+  }
+
+  private shouldSendNotification(type: NotificationData['type'], preferences: NotificationPreferences): boolean {
+    switch (type) {
+      case 'token-change':
+      case 'design-system-change':
+        return preferences.tokenChanges;
+      case 'pattern-update':
+        return preferences.patternUpdates;
+      case 'scan-complete':
+        return preferences.scanResults;
+      case 'approval-request':
+        return preferences.approvalRequests;
+      case 'system-update':
+        return true;
+      default:
+        return true;
+    }
+  }
+
+  async notifyTokenChanges(changes: RepositoryChange): Promise<void> {
+    console.log(`📢 Processing token changes for repository: ${changes.repository}`);
+    
+    for (const change of changes.tokenChanges) {
+      const relevantTeams = await this.getRelevantTeams([change.tokenName]);
+      
+      for (const teamName of relevantTeams) {
+        await this.createNotification({
+          type: 'token-change',
+          title: `Token ${change.type}: ${change.tokenName}`,
+          message: `Token ${change.tokenName} was ${change.type} in ${changes.repository}`,
+          severity: change.type === 'removed' ? 'warning' : 'info',
+          teamName,
+          metadata: {
+            repository: changes.repository,
+            tokenChange: change,
+            compareUrl: changes.compareUrl
+          },
+          actionUrl: changes.compareUrl
+        });
+      }
+    }
+  }
+
+  async notifyRepositoryChanges(changes: RepositoryChange): Promise<void> {
+    console.log(`📢 Notifying teams about repository changes in: ${changes.repository}`);
+    
+    const subscribedTeams = Array.from(this.teamSubscriptions.values())
+      .filter(sub => sub.preferences.tokenChanges)
+      .map(sub => sub.teamName);
+
+    for (const teamName of subscribedTeams) {
+      await this.createNotification({
+        type: 'token-change',
+        title: `Design Tokens Updated in ${changes.repository}`,
+        message: `${changes.tokenChanges.length} token(s) were modified. View changes to understand impact.`,
+        severity: 'info',
+        teamName,
+        metadata: {
+          repository: changes.repository,
+          changeCount: changes.tokenChanges.length,
+          tokenChanges: changes.tokenChanges,
+          compareUrl: changes.compareUrl,
+          author: changes.author,
+          authorTeam: changes.authorTeam,
+          commitHash: changes.commitHash
+        },
+        actionUrl: changes.compareUrl
+      });
+    }
+  }
+
+  async notifyDesignSystemTokenChanges(dsChange: {
+    changeId: string;
+    repository: string;
+    tokenChanges: TokenChange[];
+    commitDetails?: {
+      hash: string;
+      author: string;
+      message: string;
+      timestamp: Date;
+      compareUrl?: string;
+    };
+    impact: {
+      severity: 'low' | 'medium' | 'high' | 'critical';
+      affectedFiles: string[];
+      description: string;
+    };
+  }): Promise<void> {
+    console.log(`🎨 Processing Design System token changes: ${dsChange.changeId}`);
+    
+    try {
+      const subscribedTeams = Array.from(this.teamSubscriptions.values())
+        .filter(sub => sub.preferences.tokenChanges && sub.teamName !== 'Design System');
+
+      const severityEmoji = {
+        low: '🔵',
+        medium: '🟡', 
+        high: '🟠',
+        critical: '🔴'
+      };
+
+      for (const team of subscribedTeams) {
+        const notification: NotificationData = {
+          id: `ds-change-${dsChange.changeId}-${team.teamName}`,
+          type: 'design-system-change',
+          title: `${severityEmoji[dsChange.impact.severity]} Design System Token Changes`,
+          message: dsChange.impact.description,
+          severity: dsChange.impact.severity === 'critical' ? 'error' : 
+                   dsChange.impact.severity === 'high' ? 'warning' : 'info',
+          teamName: team.teamName,
+          metadata: {
+            changeId: dsChange.changeId,
+            repository: dsChange.repository,
+            tokenChanges: dsChange.tokenChanges,
+            commitDetails: dsChange.commitDetails,
+            impact: dsChange.impact
+          },
+          timestamp: new Date(),
+          read: false,
+          actionUrl: dsChange.commitDetails?.compareUrl
+        };
+
+        if (!this.notifications.has(team.teamName)) {
+          this.notifications.set(team.teamName, []);
+        }
+        this.notifications.get(team.teamName)!.push(notification);
+
+        await this.sendEnhancedDesignSystemEmail(team, dsChange, notification);
+      }
+
+      console.log(`✅ Design System change notifications sent to ${subscribedTeams.length} teams`);
+      
+    } catch (error) {
+      console.error(`❌ Error notifying Design System token changes:`, error);
+    }
+  }
+
+  private async sendEnhancedDesignSystemEmail(
+    team: TeamSubscription, 
+    dsChange: any, 
+    notification: NotificationData
+  ): Promise<void> {
+    try {
+      const emailSent = await emailService.sendDesignSystemChangeEmail({
+        to: team.email,
+        teamName: team.teamName,
+        dsChange,
+        notification
+      });
+
+      if (emailSent) {
+        console.log(`✅ Enhanced DS change email sent to ${team.teamName}`);
+      }
+    } catch (error) {
+      console.error(`❌ Failed to send enhanced DS email to ${team.teamName}:`, error);
+    }
+  }
+}
+
+export const notificationService = new NotificationService();

@@ -1,0 +1,94 @@
+{
+  "scanDate": "2025-09-05T10:07:23.060Z",
+  "totalRepositories": 3,
+  "totalTokensFound": 0,
+  "totalUniqueTokens": 0,
+  "repositories": [
+    {
+      "repository": {
+        "url": "https://github.com/canon/marketing-website",
+        "name": "marketing-website",
+        "team": "Marketing",
+        "type": "website",
+        "branch": "main"
+      },
+      "scanDate": "2025-09-05T10:07:22.255Z",
+      "tokensFound": [],
+      "totalUsage": 0,
+      "coverage": 0,
+      "patterns": [],
+      "errors": [
+        "Cloning into '/Users/samarmustafa/Documents/Projects/2025/VIBE-CODING/ds-usage-tracker/backend/temp/repos/marketing-website'...\nremote: Repository not found.\nfatal: repository 'https://github.com/canon/marketing-website/' not found\n"
+      ],
+      "summary": {
+        "totalFiles": 0,
+        "scannedFiles": 0,
+        "tokensFound": 0,
+        "uniqueTokens": 0,
+        "mostUsedToken": "",
+        "coveragePercentage": 0
+      }
+    },
+    {
+      "repository": {
+        "url": "https://github.com/canon/e-commerce-platform",
+        "name": "e-commerce-platform",
+        "team": "E-commerce",
+        "type": "website",
+        "branch": "main"
+      },
+      "scanDate": "2025-09-05T10:07:22.632Z",
+      "tokensFound": [],
+      "totalUsage": 0,
+      "coverage": 0,
+      "patterns": [],
+      "errors": [
+        "Cloning into '/Users/samarmustafa/Documents/Projects/2025/VIBE-CODING/ds-usage-tracker/backend/temp/repos/e-commerce-platform'...\nremote: Repository not found.\nfatal: repository 'https://github.com/canon/e-commerce-platform/' not found\n"
+      ],
+      "summary": {
+        "totalFiles": 0,
+        "scannedFiles": 0,
+        "tokensFound": 0,
+        "uniqueTokens": 0,
+        "mostUsedToken": "",
+        "coveragePercentage": 0
+      }
+    },
+    {
+      "repository": {
+        "url": "https://github.com/canon/mobile-app",
+        "name": "canon-mobile-app",
+        "team": "Mobile",
+        "type": "mobile-app",
+        "branch": "develop"
+      },
+      "scanDate": "2025-09-05T10:07:23.057Z",
+      "tokensFound": [],
+      "totalUsage": 0,
+      "coverage": 0,
+      "patterns": [],
+      "errors": [
+        "Cloning into '/Users/samarmustafa/Documents/Projects/2025/VIBE-CODING/ds-usage-tracker/backend/temp/repos/canon-mobile-app'...\nremote: Repository not found.\nfatal: repository 'https://github.com/canon/mobile-app/' not found\n"
+      ],
+      "summary": {
+        "totalFiles": 0,
+        "scannedFiles": 0,
+        "tokensFound": 0,
+        "uniqueTokens": 0,
+        "mostUsedToken": "",
+        "coveragePercentage": 0
+      }
+    }
+  ],
+  "summary": {
+    "totalFiles": 0,
+    "averageCoverage": 0,
+    "tokensByCategory": {},
+    "teamUsage": {
+      "Marketing": 0,
+      "E-commerce": 0,
+      "Mobile": 0
+    },
+    "topTokens": []
+  }
+}

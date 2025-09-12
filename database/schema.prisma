@@ -1,0 +1,343 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  team      String
+  role      Role     @default(DEVELOPER)
+  avatarUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  tokensCreated    Token[]        @relation("TokenCreator")
+  changeRequests   ChangeRequest[] @relation("ChangeRequestor")
+  approvals        ChangeRequest[] @relation("ChangeApprover")
+  tokenHistory     TokenHistory[]
+  notifications    Notification[]
+
+  @@map("users")
+}
+
+model Token {
+  id               String           @id @default(cuid())
+  tokenId          String           @unique
+  name             String
+  currentVersion   String
+  value            Json
+  category         TokenCategory
+  criticality      Criticality      @default(MEDIUM)
+  reviewRequired   Boolean          @default(false)
+  deprecationStatus DeprecationStatus @default(STABLE)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  // Relations
+  creator          User             @relation("TokenCreator", fields: [creatorId], references: [id])
+  creatorId        String
+  history          TokenHistory[]
+  usages           TokenUsage[]
+  patterns         PatternToken[]
+  dependencies     TokenDependency[] @relation("TokenDependencies")
+  dependents       TokenDependency[] @relation("DependentTokens")
+  changeRequests   ChangeRequest[]
+
+  @@map("tokens")
+}
+
+model TokenHistory {
+  id          String   @id @default(cuid())
+  version     String
+  changes     Json
+  changedAt   DateTime @default(now())
+  approvedAt  DateTime?
+  rollbackInfo Json?
+
+  // Relations
+  token       Token    @relation(fields: [tokenId], references: [id], onDelete: Cascade)
+  tokenId     String
+  changedBy   User     @relation(fields: [changedById], references: [id])
+  changedById String
+
+  @@map("token_history")
+}
+
+model Team {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  contactEmail String
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  applications Application[]
+  tokenUsages  TokenUsage[]
+
+  @@map("teams")
+}
+
+model Application {
+  id          String      @id @default(cuid())
+  name        String
+  type        AppType
+  domain      String?
+  repository  String?
+  status      AppStatus   @default(ACTIVE)
+  lastScanned DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  // Relations
+  team        Team        @relation(fields: [teamId], references: [id])
+  teamId      String
+  tokenUsages TokenUsage[]
+  scanResults ScanResult[]
+
+  @@map("applications")
+}
+
+model TokenUsage {
+  id             String   @id @default(cuid())
+  usageCount     Int      @default(0)
+  lastUsed       DateTime @default(now())
+  implementation Implementation
+  filePaths      String[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  token         Token       @relation(fields: [tokenId], references: [id], onDelete: Cascade)
+  tokenId       String
+  team          Team        @relation(fields: [teamId], references: [id])
+  teamId        String
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  applicationId String
+
+  @@unique([tokenId, teamId, applicationId])
+  @@map("token_usages")
+}
+
+model Pattern {
+  id          String   @id @default(cuid())
+  patternId   String   @unique
+  name        String
+  description String?
+  complexity  Complexity @default(SIMPLE)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  tokens      PatternToken[]
+  usages      PatternUsage[]
+
+  @@map("patterns")
+}
+
+model PatternToken {
+  id        String @id @default(cuid())
+  
+  // Relations
+  pattern   Pattern @relation(fields: [patternId], references: [id], onDelete: Cascade)
+  patternId String
+  token     Token   @relation(fields: [tokenId], references: [id], onDelete: Cascade)
+  tokenId   String
+
+  @@unique([patternId, tokenId])
+  @@map("pattern_tokens")
+}
+
+model PatternUsage {
+  id            String   @id @default(cuid())
+  usageCount    Int      @default(0)
+  lastUsed      DateTime @default(now())
+  teams         String[] // Array of team IDs
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  pattern       Pattern  @relation(fields: [patternId], references: [id], onDelete: Cascade)
+  patternId     String
+
+  @@map("pattern_usages")
+}
+
+model TokenDependency {
+  id           String @id @default(cuid())
+  relationship DependencyType @default(USES)
+  strength     Int    @default(1)
+
+  // Relations
+  token        Token  @relation("TokenDependencies", fields: [tokenId], references: [id], onDelete: Cascade)
+  tokenId      String
+  dependsOn    Token  @relation("DependentTokens", fields: [dependsOnId], references: [id], onDelete: Cascade)
+  dependsOnId  String
+
+  @@unique([tokenId, dependsOnId])
+  @@map("token_dependencies")
+}
+
+model ChangeRequest {
+  id              String           @id @default(cuid())
+  type            ChangeType
+  proposedChanges Json
+  reason          String
+  impact          Json             // ImpactAnalysis
+  status          RequestStatus    @default(PENDING)
+  testDeploymentId String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  // Relations
+  token           Token            @relation(fields: [tokenId], references: [id], onDelete: Cascade)
+  tokenId         String
+  requestedBy     User             @relation("ChangeRequestor", fields: [requestedById], references: [id])
+  requestedById   String
+  approvedBy      User?            @relation("ChangeApprover", fields: [approvedById], references: [id])
+  approvedById    String?
+  notifications   Notification[]
+
+  @@map("change_requests")
+}
+
+model Notification {
+  id           String           @id @default(cuid())
+  title        String
+  message      String
+  type         NotificationType
+  priority     Priority         @default(MEDIUM)
+  isRead       Boolean          @default(false)
+  channels     String[]         // Array of notification channels
+  metadata     Json?
+  createdAt    DateTime         @default(now())
+  readAt       DateTime?
+
+  // Relations
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String
+  changeRequest ChangeRequest?  @relation(fields: [changeRequestId], references: [id], onDelete: Set(null))
+  changeRequestId String?
+
+  @@map("notifications")
+}
+
+model ScanResult {
+  id           String   @id @default(cuid())
+  scanDate     DateTime @default(now())
+  tokensFound  Int      @default(0)
+  coverage     Float    @default(0)
+  results      Json     // Detailed scan results
+  errors       String[]
+  
+  // Relations
+  application  Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  applicationId String
+
+  @@map("scan_results")
+}
+
+// Enums
+enum Role {
+  DESIGNER
+  DEVELOPER
+  MANAGER
+  ADMIN
+}
+
+enum TokenCategory {
+  COLOR
+  TYPOGRAPHY
+  SPACING
+  SHADOW
+  BORDER
+  ANIMATION
+  BREAKPOINT
+}
+
+enum Criticality {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum DeprecationStatus {
+  STABLE
+  DEPRECATED
+  SUNSET
+}
+
+enum AppType {
+  WEBSITE
+  MOBILE_APP
+  DESKTOP_APP
+  EMAIL
+  SOCIAL
+}
+
+enum AppStatus {
+  ACTIVE
+  INACTIVE
+  ERROR
+}
+
+enum Implementation {
+  CSS_VARIABLES
+  SCSS_IMPORT
+  JS_OBJECT
+  DESIGN_TOKENS
+}
+
+enum Complexity {
+  SIMPLE
+  MEDIUM
+  COMPLEX
+}
+
+enum DependencyType {
+  USES
+  EXTENDS
+  REFERENCES
+}
+
+enum ChangeType {
+  CREATE
+  UPDATE
+  DELETE
+  DEPRECATE
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  IN_REVIEW
+}
+
+enum NotificationType {
+  TOKEN_CREATED
+  TOKEN_UPDATED
+  TOKEN_DEPRECATED
+  CHANGE_REQUEST
+  APPROVAL_REQUIRED
+  SCAN_COMPLETED
+  SYSTEM_ALERT
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
