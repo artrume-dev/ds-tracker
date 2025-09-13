@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { createServer } from 'http';
+import path from 'path';
 import dotenv from 'dotenv';
 
 import { errorHandler } from './middleware/errorHandler';
@@ -23,20 +24,42 @@ const server = createServer(app);
 const PORT = process.env.PORT || 5001; // Changed from 5000 to 5001
 
 // Middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false, // Disable CSP for React app
+  crossOriginEmbedderPolicy: false
+}));
+
+// CORS configuration
+const allowedOrigins = [
+  process.env.FRONTEND_URL || "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:3000"
+];
+
+// Add Railway production domain if available
+if (process.env.RAILWAY_STATIC_URL) {
+  allowedOrigins.push(process.env.RAILWAY_STATIC_URL);
+}
+if (process.env.NODE_ENV === 'production') {
+  allowedOrigins.push('https://*.railway.app');
+}
+
 app.use(cors({
-  origin: [
-    process.env.FRONTEND_URL || "http://localhost:3000",
-    "http://localhost:3001", // Alternative frontend port
-    "http://localhost:3000", // Primary frontend port
-  ],
+  origin: allowedOrigins,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "Origin", "X-Requested-With", "Accept"]
 }));
-app.use(morgan('combined'));
+
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static files from React app in production
+if (process.env.NODE_ENV === 'production') {
+  const frontendBuildPath = path.join(__dirname, '../../frontend/build');
+  app.use(express.static(frontendBuildPath));
+}
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -50,19 +73,38 @@ app.get('/health', (req, res) => {
 // API Routes
 app.use('/api', routes);
 
+// Serve React app for all non-API routes in production
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    // Skip if it's an API route
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ 
+        success: false, 
+        error: { 
+          code: 'NOT_FOUND', 
+          message: 'API route not found' 
+        } 
+      });
+    }
+    
+    const frontendBuildPath = path.join(__dirname, '../../frontend/build');
+    res.sendFile(path.join(frontendBuildPath, 'index.html'));
+  });
+} else {
+  // 404 handler for development
+  app.use('*', (req, res) => {
+    res.status(404).json({ 
+      success: false, 
+      error: { 
+        code: 'NOT_FOUND', 
+        message: 'Route not found' 
+      } 
+    });
+  });
+}
+
 // Error handling
 app.use(errorHandler);
-
-// 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({ 
-    success: false, 
-    error: { 
-      code: 'NOT_FOUND', 
-      message: 'Route not found' 
-    } 
-  });
-});
 
 // Initialize services and start server
 async function startServer() {
