@@ -8,6 +8,7 @@ const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const http_1 = require("http");
+const path_1 = __importDefault(require("path"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const errorHandler_1 = require("./middleware/errorHandler");
 const routes_1 = __importDefault(require("./routes"));
@@ -22,20 +23,37 @@ const app = (0, express_1.default)();
 const server = (0, http_1.createServer)(app);
 const PORT = process.env.PORT || 5001; // Changed from 5000 to 5001
 // Middleware
-app.use((0, helmet_1.default)());
+app.use((0, helmet_1.default)({
+    contentSecurityPolicy: false, // Disable CSP for React app
+    crossOriginEmbedderPolicy: false
+}));
+// CORS configuration
+const allowedOrigins = [
+    process.env.FRONTEND_URL || "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:3000"
+];
+// Add Railway production domain if available
+if (process.env.RAILWAY_STATIC_URL) {
+    allowedOrigins.push(process.env.RAILWAY_STATIC_URL);
+}
+if (process.env.NODE_ENV === 'production') {
+    allowedOrigins.push('https://*.railway.app');
+}
 app.use((0, cors_1.default)({
-    origin: [
-        process.env.FRONTEND_URL || "http://localhost:3000",
-        "http://localhost:3001", // Alternative frontend port
-        "http://localhost:3000", // Primary frontend port
-    ],
+    origin: allowedOrigins,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Origin", "X-Requested-With", "Accept"]
 }));
-app.use((0, morgan_1.default)('combined'));
+app.use((0, morgan_1.default)(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.use(express_1.default.json({ limit: '10mb' }));
 app.use(express_1.default.urlencoded({ extended: true }));
+// Serve static files from React app in production
+if (process.env.NODE_ENV === 'production') {
+    const frontendBuildPath = path_1.default.join(__dirname, '../../frontend/build');
+    app.use(express_1.default.static(frontendBuildPath));
+}
 // Health check endpoint
 app.get('/health', (req, res) => {
     res.json({
@@ -46,18 +64,37 @@ app.get('/health', (req, res) => {
 });
 // API Routes
 app.use('/api', routes_1.default);
+// Serve React app for all non-API routes in production
+if (process.env.NODE_ENV === 'production') {
+    app.get('*', (req, res) => {
+        // Skip if it's an API route
+        if (req.path.startsWith('/api')) {
+            return res.status(404).json({
+                success: false,
+                error: {
+                    code: 'NOT_FOUND',
+                    message: 'API route not found'
+                }
+            });
+        }
+        const frontendBuildPath = path_1.default.join(__dirname, '../../frontend/build');
+        res.sendFile(path_1.default.join(frontendBuildPath, 'index.html'));
+    });
+}
+else {
+    // 404 handler for development
+    app.use('*', (req, res) => {
+        res.status(404).json({
+            success: false,
+            error: {
+                code: 'NOT_FOUND',
+                message: 'Route not found'
+            }
+        });
+    });
+}
 // Error handling
 app.use(errorHandler_1.errorHandler);
-// 404 handler
-app.use('*', (req, res) => {
-    res.status(404).json({
-        success: false,
-        error: {
-            code: 'NOT_FOUND',
-            message: 'Route not found'
-        }
-    });
-});
 // Initialize services and start server
 async function startServer() {
     try {

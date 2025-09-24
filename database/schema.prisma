@@ -227,7 +227,7 @@ model Notification {
   // Relations
   user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       String
-  changeRequest ChangeRequest?  @relation(fields: [changeRequestId], references: [id], onDelete: Set(null))
+  changeRequest ChangeRequest?  @relation(fields: [changeRequestId], references: [id], onDelete: SetNull)
   changeRequestId String?
 
   @@map("notifications")
